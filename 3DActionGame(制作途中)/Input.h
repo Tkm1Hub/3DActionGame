@@ -1,0 +1,61 @@
+#pragma once
+
+class Input
+{
+public:
+    Input();
+    ~Input();
+
+    //キーの種類
+    enum KeyKinds
+    {
+        Move = 0,  //移動キーのどれか
+        Left = 1,  //右
+        Right = 2,  //左
+        Up = 3,  //上
+        Down = 4,  //下
+        Space = 5,  //スペース
+        LB = 6,  //左上の手前のボタン
+        LT = 7,  //左上の奥側のボタン
+        RB = 8,  //右上の手前のボタン
+        RT = 9,  //右奥側のボタン
+        X = 10,
+        Y = 11,
+        A = 12,
+        B = 13,
+        LeftStick = 14,  //左スティック押し込み
+        None = 15,  //使用しないキーもしくは押されていない
+    };
+
+    void Update();
+
+    int GetNowFrameInput() const { return nowFrameInput; }
+    int GetNowFrameNewInput() const { return nowFrameNewInput; }
+
+    bool GetIsMoveLStick() const { return isMoveLStick; }
+    bool GetIsMoveRStick() const { return isMoveRStick; }
+
+    float GetLeftStickX() const { return leftStickX; }
+    float GetLeftStickY() const { return leftStickY; }
+    float GetRightStickX() const { return rightStickX; }
+    float GetRightStickY() const { return rightStickY; }
+
+    float GetRStickAngle() const { return RStickAngle; }
+    float GetLStickAngle() const { return LStickAngle; }
+private:
+    static constexpr int DEADZONE = 10;     // スティックを倒してもすぐ反応しない領域
+
+    int nowFrameInput;          // 現在のフレームで押されているボタン
+    int nowFrameNewInput;       // 現在のフレームで新たに押されたボタン
+    bool isMoveRStick;          // 右スティックが傾いているか
+    bool isMoveLStick;          // 左スティックが傾いているか
+
+    float leftStickX;           // 左スティックのX軸の傾き
+    float leftStickY;           // 左スティックのY軸の傾き
+    float rightStickX;          // 右スティックのX軸の傾き
+    float rightStickY;          // 右スティックのY軸の傾き
+    float LStickAngle;          // 左スティックの傾き度
+    float RStickAngle;          // 右スティックの傾き度
+
+    void CalcStickInput();
+};

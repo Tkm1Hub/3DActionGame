@@ -1,0 +1,14 @@
+{
+  "ModelPath": "data/model/character/Hideron.mv1",
+  "InitPos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "Scale": {
+    "x": 0.1,
+    "y": 0.1,
+    "z": 0.1
+  }
+
+}
