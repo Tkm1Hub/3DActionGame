@@ -25,7 +25,6 @@ void Bullet::Load()
 void Bullet::Update()
 {
 	Move();
-
 }
 
 void Bullet::Draw()
@@ -44,7 +43,7 @@ void Bullet::Move()
 		moveVec = VScale(moveVec, speed);
 		pos = VAdd(pos, moveVec);
 
-		if (pos.x > 100 || pos.x < -100)
+		if (pos.x > 50 || pos.x < -50)
 		{
 			moveVec.x *= -1;
 		}

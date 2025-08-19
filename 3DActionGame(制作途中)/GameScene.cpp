@@ -100,8 +100,6 @@ void GameScene::Draw() const
         }
     }
 
-    bullet->Draw();
-
     //シャドウマップへの描画を終了
     ShadowMap_DrawEnd();
 

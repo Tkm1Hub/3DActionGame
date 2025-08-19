@@ -82,6 +82,9 @@
     <Filter Include="ソース ファイル\Collision\ObjectCollision">
       <UniqueIdentifier>{e70957e6-ae83-4f16-86a4-fa5da2a1b410}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\BulletManager">
+      <UniqueIdentifier>{89ce046a-d679-4047-97d5-b5e4b700bd54}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -152,6 +155,9 @@
     </ClCompile>
     <ClCompile Include="CollisionManager.cpp">
       <Filter>ソース ファイル\Collision\ObjectCollision</Filter>
+    </ClCompile>
+    <ClCompile Include="BulletManager.cpp">
+      <Filter>ソース ファイル\BulletManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -226,6 +232,9 @@
     </ClInclude>
     <ClInclude Include="CollisionManager.h">
       <Filter>ソース ファイル\Collision\ObjectCollision</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletManager.h">
+      <Filter>ソース ファイル\BulletManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
