@@ -9,6 +9,7 @@
 #include "SkyDome.h"
 #include "Stage.h"
 #include "StageCollision.h"
+#include "CollisionManager.h"
 #include "Shadow.h"
 #include "Debug.h"
 #include "Bullet.h"
@@ -36,6 +37,7 @@ void GameScene::Init()
     shadow = new Shadow;
 
     bullet = std::make_shared<Bullet>();
+    collisionManager = std::make_shared<CollisionManager>();
 
     //オブジェクトをリストに追加
     //objMgr->AddObject(new FreeCamera);
@@ -80,6 +82,8 @@ void GameScene::Update()
     skyDome->Update(player->GetPosition());
     objMgr->UpdateAll();
     bullet->Update();
+
+    collisionManager->Update(*player, bullet);
 
     shadow->Update(player->GetPosition());
 }

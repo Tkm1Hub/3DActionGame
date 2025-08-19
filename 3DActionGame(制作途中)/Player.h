@@ -43,12 +43,15 @@ public:
     const float GetJumpPower() const override { return currentJumpPower; }
 
     // ゲッター
-    const float& GetBrendRate() const { return animBlendRate; }
-    const float& GetCurrentAnim() const { return currentAnimCount; }
-    const float& GetPrevAnim() const { return prevAnimCount; }
+    const float GetBrendRate() const { return animBlendRate; }
+    const float GetCurrentAnim() const { return currentAnimCount; }
+    const float GetPrevAnim() const { return prevAnimCount; }
     const float GetHitRadius() const override { return HIT_RADIUS; }
     const float GetHitHeight() const override { return HIT_HEIGHT; }
-    const float& GetRunFrameCount() const { return runFrameCount; }
+    const int GetRunFrameCount() const { return runFrameCount; }
+
+    const VECTOR GetCapsuleA();
+    const VECTOR GetCapsuleB();
 
 private:
     // 定数定義
@@ -62,20 +65,20 @@ private:
     static constexpr float ANGLE_SPEED = 0.2f;      // モデルの角度変更速度
     static constexpr float ANIM_PLAY_SPEED = 0.4f;  // アニメーションの再生速度
     static constexpr float ANIM_BLEND_SPEED = 0.1f; // アニメーションのブレンド率変化速度
-    static constexpr float HIT_RADIUS = 4.0f;       // 当たり判定半径
-    static constexpr float HIT_HEIGHT = 12.0f;       // 当たり判定高さ
+    static constexpr float HIT_RADIUS = 3.0f;       // 当たり判定半径
+    static constexpr float HIT_HEIGHT = 13.5f;       // 当たり判定高さ
     static constexpr int STOP_ANIM_DURATION = 27;   // ストップアニメーションの最大フレーム数
 
     // 変数
-    VECTOR upMoveVec;           // 上下の移動ベクトル
-    VECTOR leftMoveVec;         // 左右の移動ベクトル
-    bool isMove;                // 移動中か
-    bool isJumping;             // ジャンプ中か
-    bool isFalling;             // 落下中かどうか
-    bool isRunning;             // 走っているかどうか
-    bool isPlayingStopAnim;     // ストップアニメ中か
-    int runFrameCount;          // 走り始めてからのフレーム
-    int stopAnimCount;          // ストップアニメーションのフレーム
+    VECTOR upMoveVec = VGet(0.0f, 0.0f, 0.0f);           // 上下の移動ベクトル
+    VECTOR leftMoveVec = VGet(0.0f, 0.0f, 0.0f);         // 左右の移動ベクトル
+    bool isMove = false;                // 移動中か
+    bool isJumping = false;             // ジャンプ中か
+    bool isFalling = false;             // 落下中かどうか
+    bool isRunning = false;             // 走っているかどうか
+    bool isPlayingStopAnim = false;     // ストップアニメ中か
+    int runFrameCount = 0;          // 走り始めてからのフレーム
+    int stopAnimCount = 0;          // ストップアニメーションのフレーム
 
 
     // アニメーション関連変数

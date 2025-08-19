@@ -10,6 +10,7 @@ class CameraManager;
 class SkyDome;
 class Stage;
 class StageCollision;
+class CollisionManager;
 class Shadow;
 class Bullet;
 
@@ -46,5 +47,6 @@ private:
     Shadow* shadow = nullptr;
     SkyDome* skyDome = nullptr;
 
-    std::shared_ptr<Bullet>bullet;
+    std::shared_ptr<Bullet>bullet = nullptr;
+    std::shared_ptr<CollisionManager>collisionManager = nullptr;
 };

@@ -631,3 +631,15 @@ void Player::Draw()
 		MV1DrawModel(modelHandle);
 	}
 }
+
+const VECTOR Player::GetCapsuleA()
+{
+	VECTOR CapsuleA = VGet(pos.x, pos.y + HIT_RADIUS + HIT_HEIGHT, pos.z);
+	return CapsuleA;
+}
+
+const VECTOR Player::GetCapsuleB()
+{
+	VECTOR CapsuleB = VGet(pos.x, pos.y + HIT_RADIUS, pos.z);
+	return CapsuleB;
+}

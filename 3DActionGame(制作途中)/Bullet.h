@@ -13,6 +13,9 @@ public:
 	void Draw() override;
 
 	VECTOR GetPosition() const { return pos; }
+	float GetRadius() const { return RADIUS; }
+
+	void HitPlayer();
 
 private:
 	// ’è”

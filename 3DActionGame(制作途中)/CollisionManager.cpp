@@ -1,10 +1,23 @@
 #include "stdafx.h"
 #include "CollisionManager.h"
+#include "Player.h"
+#include "Bullet.h"
 
 CollisionManager::CollisionManager()
 {}
 
 CollisionManager::~CollisionManager(){}
+
+void CollisionManager::Update(Player& player, std::shared_ptr<Bullet>& bullet)
+{
+	// もしプレイヤーと弾が衝突したら
+	if (CapsuleSphereCollision(player.GetCapsuleA(), player.GetCapsuleB(), player.GetHitRadius(),
+		bullet->GetPosition(), bullet->GetRadius()))
+	{
+		bullet->HitPlayer();
+	}
+
+}
 
 // カプセルと球の当たり判定
 bool CollisionManager::CapsuleSphereCollision(VECTOR capsuleAPos, VECTOR capsuleBPos, float capsuleR, VECTOR spherePos, float sphereR)

@@ -8,7 +8,7 @@ Bullet::~Bullet(){}
 void Bullet::Init()
 {
 	name = "Bullet";
-	pos = VGet(0.0f, 25.0f, 15.0f);
+	pos = VGet(0.0f, 20.0f, 15.0f);
 	scale = VGet(0.0f, 0.0f, 0.0f);
 	rot = VGet(0.0f, 0.0f, 0.0f);
 	modelHandle = -1;
@@ -26,10 +26,6 @@ void Bullet::Update()
 {
 	Move();
 
-	if (pos.x > 100 || pos.x < -100)
-	{
-		moveVec.x *= -1;
-	}
 }
 
 void Bullet::Draw()
@@ -47,5 +43,17 @@ void Bullet::Move()
 	{
 		moveVec = VScale(moveVec, speed);
 		pos = VAdd(pos, moveVec);
+
+		if (pos.x > 100 || pos.x < -100)
+		{
+			moveVec.x *= -1;
+		}
 	}
+}
+
+void Bullet::HitPlayer()
+{
+	// プレイヤーに当たったら非表示
+	isActive = false;
+	pos = VGet(0.0f, 0.0f, 0.0f);
 }
