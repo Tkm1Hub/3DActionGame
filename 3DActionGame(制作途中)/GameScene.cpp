@@ -87,7 +87,7 @@ void GameScene::Update()
     //bullet->Update();
     bulletMgr->Update();
 
-    //collisionManager->Update(*player, bullet);
+    collisionManager->Update(*player, bulletMgr->GetBullets());
 
     shadow->Update(player->GetPosition());
 }

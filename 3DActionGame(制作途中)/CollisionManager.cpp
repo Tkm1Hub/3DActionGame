@@ -8,13 +8,20 @@ CollisionManager::CollisionManager()
 
 CollisionManager::~CollisionManager(){}
 
-void CollisionManager::Update(Player& player, std::shared_ptr<Bullet>& bullet)
+void CollisionManager::Update(Player& player, const std::vector<std::shared_ptr<Bullet>>& bullets)
 {
-	// もしプレイヤーと弾が衝突したら
-	if (CapsuleSphereCollision(player.GetCapsuleA(), player.GetCapsuleB(), player.GetHitRadius(),
-		bullet->GetPos(), bullet->GetRadius()))
+	// 有効化されていたら衝突判定
+	for (auto& bullet : bullets)
 	{
-		bullet->HitPlayer();
+		if (bullet->IsActive())
+		{
+			// もしプレイヤーと弾が衝突したら
+			if (CapsuleSphereCollision(player.GetCapsuleA(), player.GetCapsuleB(), player.GetHitRadius(),
+				bullet->GetPos(), bullet->GetRadius()))
+			{
+				bullet->HitPlayer();
+			}
+		}
 	}
 }
 
