@@ -11,6 +11,7 @@ class SkyDome;
 class Stage;
 class StageCollision;
 class Shadow;
+class Bullet;
 
 class GameScene : public Scene
 {
@@ -19,6 +20,7 @@ public:
     /// @brief SceneManager への参照を受け取ります。
     // @param manager SceneManager への参照
     GameScene(SceneManager& manager);
+    ~GameScene();
 
     /// @brief タイトルを初期化します。
     void Init() override;
@@ -33,9 +35,9 @@ public:
 private:
 
     // オブジェクトのポインタ
-    ObjectManager* objMgr;
-    Input* input;
-    Debug* debug;
+    ObjectManager* objMgr = nullptr;
+    Input* input = nullptr;
+    Debug* debug = nullptr;
     Player* player = nullptr;
     Enemy* enemy = nullptr;
     CameraManager* cameraMgr = nullptr;
@@ -43,4 +45,6 @@ private:
     StageCollision* stageColl = nullptr;
     Shadow* shadow = nullptr;
     SkyDome* skyDome = nullptr;
+
+    std::shared_ptr<Bullet>bullet = nullptr;
 };

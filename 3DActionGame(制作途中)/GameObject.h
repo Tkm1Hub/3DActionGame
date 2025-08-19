@@ -15,11 +15,11 @@ public:
 	std::string GetName() const { return name; }
 protected:
 
-	std::string name;				// 名前
-	VECTOR pos;						// 座標
-	VECTOR scale;					// モデルの大きさ
-	VECTOR rot;						// 回転
-	int modelHandle;				// モデルハンドル
+	std::string name = "null";				// 名前
+	VECTOR pos = VGet(0.0f, 0.0f, 0.0f);	// 座標
+	VECTOR scale = VGet(0.0f, 0.0f, 0.0f);	// モデルの大きさ
+	VECTOR rot = VGet(0.0f, 0.0f, 0.0f);	// 回転
+	int modelHandle = -1;					// モデルハンドル
 
 
 };

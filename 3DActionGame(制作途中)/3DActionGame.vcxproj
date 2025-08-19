@@ -146,6 +146,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CameraBase.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="FreeCamera.cpp" />
@@ -214,6 +215,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="CameraBase.h" />
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="FreeCamera.h" />

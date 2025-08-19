@@ -11,9 +11,19 @@
 #include "StageCollision.h"
 #include "Shadow.h"
 #include "Debug.h"
+#include "Bullet.h"
 
 GameScene::GameScene(SceneManager& manager)
     : Scene{ manager } {
+}
+
+GameScene::~GameScene()
+{
+    delete objMgr;
+    delete debug;
+    delete input;
+    delete cameraMgr;
+    delete shadow;
 }
 
 void GameScene::Init()
@@ -24,6 +34,8 @@ void GameScene::Init()
     input = new Input;
     cameraMgr = new CameraManager;
     shadow = new Shadow;
+
+    std::shared_ptr<Bullet>bullet = std::make_shared<Bullet>();
 
     //オブジェクトをリストに追加
     //objMgr->AddObject(new FreeCamera);
@@ -42,6 +54,7 @@ void GameScene::Init()
     objMgr->InitAll();
     cameraMgr->Init();
     shadow->Init();
+    bullet->Init();
 
     // オブジェクトのロード処理
     objMgr->LoadAll();
@@ -90,6 +103,7 @@ void GameScene::Draw() const
 
     // オブジェクトの描画
     objMgr->DrawAll();
+    bullet->Draw();
 
     // 描画に使用するシャドウマップの設定を解除
     SetUseShadowMap(0, -1);

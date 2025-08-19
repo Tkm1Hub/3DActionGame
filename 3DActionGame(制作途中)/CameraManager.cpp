@@ -7,6 +7,15 @@
 
 CameraManager::CameraManager(){}
 
+CameraManager::~CameraManager()
+{
+	delete camera;
+	delete freeCamera;
+	delete focusCamera;
+
+
+}
+
 void CameraManager::Init()
 {
 	currentMode = CameraMode::Free;

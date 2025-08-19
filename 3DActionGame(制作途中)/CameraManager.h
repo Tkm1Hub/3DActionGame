@@ -16,6 +16,7 @@ class CameraManager
 {
 public:
 	CameraManager();
+	~CameraManager();
 
 	void Init();
 	void Update(const Input& input, const Player& player);
@@ -38,10 +39,10 @@ private:
 	float currentAngleSpeed;	// 現在のアングル変更速度
 	bool isMoveAngle;			// カメラが移動中かどうか
 
-	Player* player;
-	CameraMode currentMode;
-	Input* input;
-	CameraBase* camera;
-	FreeCamera* freeCamera;
-	FocusCamera* focusCamera;
+	Player* player = nullptr;
+	CameraMode currentMode = CameraMode::Free;
+	Input* input = nullptr;
+	CameraBase* camera = nullptr;
+	FreeCamera* freeCamera = nullptr;
+	FocusCamera* focusCamera = nullptr;
 };

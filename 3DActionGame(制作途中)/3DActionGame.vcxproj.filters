@@ -76,6 +76,9 @@
     <Filter Include="ソース ファイル\GameObject\Character\Robot">
       <UniqueIdentifier>{3e382b34-993d-44eb-b206-5aa6ae1d64e3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\GameObject\Bullet">
+      <UniqueIdentifier>{cf3aae7f-b9a1-46ca-91bb-f810e6ec6be4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -140,6 +143,9 @@
     </ClCompile>
     <ClCompile Include="Robot.cpp">
       <Filter>ソース ファイル\GameObject\Character\Robot</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>ソース ファイル\GameObject\Bullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -208,6 +214,9 @@
     </ClInclude>
     <ClInclude Include="Robot.h">
       <Filter>ソース ファイル\GameObject\Character\Robot</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>ソース ファイル\GameObject\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

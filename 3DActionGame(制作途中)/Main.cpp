@@ -82,7 +82,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     }
 
 
-
+    delete sceneManager;
 
     // Effekseer‚ğI—¹‚·‚éB
     Effkseer_End();
