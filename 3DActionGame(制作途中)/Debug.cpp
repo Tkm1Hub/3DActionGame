@@ -11,7 +11,7 @@ void Debug::SetObjectManager(ObjectManager* mgr)
 	objMgr = mgr;
 }
 
-void Debug::SetInput(const std::shared_ptr<Input>& inputPtr)
+void Debug::SetInput(Input* inputPtr)
 {
 	input = inputPtr;
 }

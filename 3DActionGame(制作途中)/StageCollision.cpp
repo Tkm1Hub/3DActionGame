@@ -2,7 +2,7 @@
 #include "StageCollision.h"
 
 StageCollision::StageCollision(int modelHandle)
-    : modelHandle(modelHandle)
+    : modelHandle(modelHandle), wallNum(0), floorNum(0)
 {
 }
 

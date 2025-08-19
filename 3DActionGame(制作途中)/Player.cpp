@@ -151,7 +151,7 @@ void Player::Move(const VECTOR& MoveVector, StageCollision& collision, const Inp
 
 	if (isRunning)
 	{
-		runFrameCount += 1;
+		runFrameCount += 1.0f;
 	}
 	else
 	{

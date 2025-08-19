@@ -11,13 +11,15 @@ public:
 	~FreeCamera();
 
 	void Init() override;
-	void Update()override;
+	void Update()override {};
+	void Update(const Input& input, const Player& player);
 	void Draw() override;
 
 	const VECTOR& GetTarget() const { return nextTarget; }
 	bool GetIsMoveAngle() const { return isMoveAngle; }
 	float GetCurrentAngleSpeed() const { return currentAngleSpeed; }
 private:
+
 	// 定数
 	static constexpr float MAX_ANGLE_SPEED = 0.04f;		// 最大旋回速度
 	static constexpr float ANGLESPEED = 0.03f;			// カメラ感度
@@ -27,13 +29,11 @@ private:
 	static constexpr float DISTANCE_OFFSET = 40.0f;		// プレイヤーからの距離
 	static constexpr float SMOOTHING = 0.1f;			// カメラのスムージング
 
-	std::shared_ptr<Player>player = std::make_shared<Player>();
-	std::shared_ptr<Input>input = std::make_shared<Input>();
+	Input* input;
+	Player* player;
 
-	// 変数初期化
-
-	void CalcCameraAngle(const std::shared_ptr<Input>& input);		// カメラのアングルを計算
-	float CalcAngleSpeed(const std::shared_ptr<Input>& input);		// カメラの旋回速度を計算
+	void CalcCameraAngle(const Input& input);		// カメラのアングルを計算
+	float CalcAngleSpeed(const Input& input);		// カメラの旋回速度を計算
 	void FixCameraPosition();	// カメラ座標を補正する
 	void moveSmoothing();							// カメラをスムーズに移動
 };

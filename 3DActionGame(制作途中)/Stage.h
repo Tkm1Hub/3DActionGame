@@ -13,6 +13,4 @@ public:
 
 	const int GetModelHandle() const { return modelHandle; }
 private:
-
-	
 };

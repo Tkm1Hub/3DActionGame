@@ -16,21 +16,12 @@ GameScene::GameScene(SceneManager& manager)
     : Scene{ manager } {
 }
 
-GameScene::~GameScene()
-{
-    delete objMgr;
-    delete debug;
-    delete cameraMgr;
-    delete shadow;
-
-}
-
 void GameScene::Init()
 {
     // オブジェクトのインスタンス化
     objMgr = new ObjectManager;
     debug = new Debug;
-    //input = new Input;
+    input = new Input;
     cameraMgr = new CameraManager;
     shadow = new Shadow;
 
@@ -42,7 +33,7 @@ void GameScene::Init()
     objMgr->AddObject(new SkyDome);
 
     //キャスト
-    //player = dynamic_cast<Player*>(objMgr->FindObject("Player"));
+    player = dynamic_cast<Player*>(objMgr->FindObject("Player"));
     enemy = dynamic_cast<Enemy*>(objMgr->FindObject("Enemy"));
     stage = dynamic_cast<Stage*>(objMgr->FindObject("Stage"));
     skyDome = dynamic_cast<SkyDome*>(objMgr->FindObject("SkyDome"));
@@ -69,7 +60,7 @@ void GameScene::Update()
 {
     // 各オブジェクトの更新処理
     input->Update();
-    cameraMgr->Update();
+    cameraMgr->Update(*input, *player);
 
     player->Update(*input, *cameraMgr->GetCurrentCamera(), *stageColl);
     enemy->Update(*stageColl);

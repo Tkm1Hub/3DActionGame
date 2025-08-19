@@ -27,7 +27,7 @@ void FreeCamera::Init()
 	SetCameraNearFar(0.1f, 1000.0f);
 }
 
-void FreeCamera::Update()
+void FreeCamera::Update(const Input& input,const Player& player)
 {
 	// ƒJƒƒ‰‚Ìù‰ñ‘¬“x‚ğŒvZ
 	currentAngleSpeed = CalcAngleSpeed(input);
@@ -35,7 +35,7 @@ void FreeCamera::Update()
 	CalcCameraAngle(input);
 
 	//ƒJƒƒ‰‚Ì’‹“_‚ÍƒvƒŒƒCƒ„[À•W‚©‚ç‹K’è’l•ª‚‚¢À•W
-	nextTarget = VAdd(player->GetPosition(), VGet(0.0f, LOOK_OFFSET_Y, 0.0f));
+	nextTarget = VAdd(player.GetPosition(), VGet(0.0f, LOOK_OFFSET_Y, 0.0f));
 
 	// ƒJƒƒ‰‚ÌÀ•W‚ğ•â³‚·‚é
 	FixCameraPosition();
@@ -57,10 +57,10 @@ void FreeCamera::Draw()
 
 }
 
-void FreeCamera::CalcCameraAngle(const std::shared_ptr<Input>& input)
+void FreeCamera::CalcCameraAngle(const Input& input)
 {
 	// X²
-	if (0.0f > input->GetRightStickX())
+	if (0.0f > input.GetRightStickX())
 	{
 		angleH -= currentAngleSpeed;
 		// ‚P‚W‚O“xˆÈã‚É‚È‚Á‚½‚çŠp“x’l‚ª‘å‚«‚­‚È‚è‚·‚¬‚È‚¢‚æ‚¤‚É‚R‚U‚O“x‚ğ‘«‚·
@@ -69,7 +69,7 @@ void FreeCamera::CalcCameraAngle(const std::shared_ptr<Input>& input)
 			angleH += DX_TWO_PI_F;
 		}
 	}
-	else if(input->GetRightStickX() > 0.0f)
+	else if(input.GetRightStickX() > 0.0f)
 	{
 		angleH += currentAngleSpeed;
 		// |‚P‚W‚O“xˆÈ‰º‚É‚È‚Á‚½‚çŠp“x’l‚ª‘å‚«‚­‚È‚è‚·‚¬‚È‚¢‚æ‚¤‚É‚R‚U‚O“x‚ğˆø‚­
@@ -80,7 +80,7 @@ void FreeCamera::CalcCameraAngle(const std::shared_ptr<Input>& input)
 	}
 
 	// Y²
-	if (0.0f > input->GetRightStickY())
+	if (0.0f > input.GetRightStickY())
 	{
 		angleV += currentAngleSpeed;
 		// ‚ ‚éˆê’èŠp“xˆÈ‰º‚É‚Í‚È‚ç‚È‚¢‚æ‚¤‚É‚·‚é
@@ -89,7 +89,7 @@ void FreeCamera::CalcCameraAngle(const std::shared_ptr<Input>& input)
 			angleV = DX_PI_F * 0.5f - 0.6f;
 		}
 	}
-	else if (input->GetRightStickY() > 0.0f)
+	else if (input.GetRightStickY() > 0.0f)
 	{
 		angleV -= currentAngleSpeed;
 		// ‚ ‚éˆê’èŠp“xˆÈã‚É‚Í‚È‚ç‚È‚¢‚æ‚¤‚É‚·‚é
@@ -100,16 +100,16 @@ void FreeCamera::CalcCameraAngle(const std::shared_ptr<Input>& input)
 	}
 }
 
-float FreeCamera::CalcAngleSpeed(const std::shared_ptr<Input>& input)
+float FreeCamera::CalcAngleSpeed(const Input&input)
 {
-	float stickAngle = input->GetRStickAngle();
+	float stickAngle = input.GetRStickAngle();
 	float stickPower = abs(stickAngle) / 1000.0f;
 
 	// ŒX‚«‚É‰‚¶‚½Å‘å‘¬“x‚ğŒvZ
 	float maxSpeed = MAX_ANGLE_SPEED * stickPower;
 
 	// ‰Á‘¬ or Œ¸‘¬
-	if (input->GetIsMoveRStick())
+	if (input.GetIsMoveRStick())
 	{
 		currentAngleSpeed += ACCEL; // ‰Á‘¬—Ê
 		currentAngleSpeed = min(currentAngleSpeed, maxSpeed); // maxSpeed‚Å§ŒÀ

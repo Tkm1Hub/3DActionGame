@@ -9,14 +9,13 @@ class Debug
 {
 public:
 	void SetObjectManager(ObjectManager* mgr);
-	void SetInput(const std::shared_ptr<Input>& inputPtr);
+	void SetInput(Input* inputPtr);
 	void SetCamera(CameraBase* camera);
 	void Draw();
 
 private:
 	ObjectManager* objMgr = nullptr;
-	//Input* input = nullptr;
-	std::shared_ptr<Input>input = std::make_shared<Input>();
+	Input* input = nullptr;
 	CameraBase* camera = nullptr;
 
 	void DrawCapsule(const Character* character);

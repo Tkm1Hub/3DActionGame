@@ -81,8 +81,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         }
     }
 
-    // シーンマネージャーの削除
-    delete sceneManager;
+
+
 
     // Effekseerを終了する。
     Effkseer_End();

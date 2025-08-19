@@ -13,19 +13,22 @@ public:
 	const VECTOR& GetNextTarget() const { return nextTarget; }
 	const VECTOR& GetForward() const { return forward; }
 
+
 protected:
 	// 定数
 	static constexpr float CAMERA_NEAR = 0.5f;
 	static constexpr float CAMERA_FAR = 1000.0f;
 
+
 	// 変数
-	VECTOR currentTarget = VGet(0.0f, 0.0f, 0.0f);		// カメラ注視点
-	VECTOR nextTarget = VGet(0.0f, 0.0f, 0.0f);			// カメラ注視点の目標位置
-	VECTOR forward = VGet(0.0f, 0.0f, 0.0f);			// カメラの方向
-	VECTOR currentPosition = VGet(0.0f, 0.0f, 0.0f);	// 現在のポジション
-	VECTOR nextPosition = VGet(0.0f, 0.0f, 0.0f);		// 目標のポジション
-	float angleH = 0.0f;								// 水平角度
-	float angleV = 0.0f;								// 垂直視点
-	float currentAngleSpeed = 0.0f;						// 現在のアングル変更速度
-	bool isMoveAngle = 0.0f;							// カメラが移動中かどうか
+	VECTOR currentTarget;		// カメラ注視点
+	VECTOR nextTarget;			// カメラ注視点の目標位置
+	VECTOR forward;				// カメラの方向
+	VECTOR currentPosition;		// 現在のポジション
+	VECTOR nextPosition;		// 目標のポジション
+	float angleH;				// 水平角度
+	float angleV;				// 垂直視点
+	float currentAngleSpeed;	// 現在のアングル変更速度
+	bool isMoveAngle;			// カメラが移動中かどうか
+
 };

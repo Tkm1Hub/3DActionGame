@@ -19,7 +19,6 @@ public:
     /// @brief SceneManager への参照を受け取ります。
     // @param manager SceneManager への参照
     GameScene(SceneManager& manager);
-    ~GameScene();
 
     /// @brief タイトルを初期化します。
     void Init() override;
@@ -35,16 +34,13 @@ private:
 
     // オブジェクトのポインタ
     ObjectManager* objMgr;
-    //Input* input;
+    Input* input;
     Debug* debug;
-    //Player* player = nullptr;
+    Player* player = nullptr;
     Enemy* enemy = nullptr;
     CameraManager* cameraMgr = nullptr;
     Stage* stage = nullptr;
     StageCollision* stageColl = nullptr;
     Shadow* shadow = nullptr;
     SkyDome* skyDome = nullptr;
-
-    std::shared_ptr<Input>input = std::make_shared<Input>();
-    std::shared_ptr<Player>player = std::make_shared<Player>();
 };

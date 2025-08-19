@@ -13,9 +13,11 @@ public:
     ~SceneManager();
 
     /// @brief アクティブなシーンを更新します。
+    /// @remark アクティブなシーンが無ければ何もしません。
     void Update() const;
 
     /// @brief アクティブなシーンを描画します。
+    /// @remark アクティブなシーンが無ければ何もしません。
     void Draw() const;
 
     /// @brief 管理するシーンを追加します。

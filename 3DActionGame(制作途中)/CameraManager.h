@@ -16,34 +16,32 @@ class CameraManager
 {
 public:
 	CameraManager();
-	~CameraManager();
 
 	void Init();
-	void Update();
+	void Update(const Input& input, const Player& player);
 	
-	CameraBase* GetCurrentCamera() const { return camera.get(); }
+	CameraBase* GetCurrentCamera() const { return camera; }
 private:
 	void SwitchMode();		// カメラ切り替え
 	void moveSmoothing();	// スムーズ移動
 
 	static constexpr float SMOOTHING = 0.1f;			// カメラのスムージング
 
-	VECTOR currentTarget = VGet(0.0f, 0.0f, 0.0f);		// カメラ注視点
-	VECTOR nextTarget = VGet(0.0f, 0.0f, 0.0f);			// カメラ注視点の目標位置
-	VECTOR forward = VGet(0.0f, 0.0f, 0.0f);			// カメラの方向
-	VECTOR currentPosition = VGet(0.0f, 0.0f, 0.0f);	// 現在のポジション
-	VECTOR nextPosition = VGet(0.0f, 0.0f, 0.0f);		// 目標のポジション
-	float angleH = 0.0f;								// 水平角度
-	float angleV = 0.0f;								// 垂直視点
-	float currentAngleSpeed = 0.0f;						// 現在のアングル変更速度
-	bool isMoveAngle = 0.0f;							// カメラが移動中かどうか
 
-	CameraMode currentMode = CameraMode::Free;
+	VECTOR currentTarget;		// カメラ注視点
+	VECTOR nextTarget;			// カメラ注視点の目標位置
+	VECTOR forward;				// カメラの方向
+	VECTOR currentPosition;		// 現在のポジション
+	VECTOR nextPosition;		// 目標のポジション
+	float angleH;				// 水平角度
+	float angleV;				// 垂直視点
+	float currentAngleSpeed;	// 現在のアングル変更速度
+	bool isMoveAngle;			// カメラが移動中かどうか
 
-	std::shared_ptr<Input>input = nullptr;
-
-	std::shared_ptr<CameraBase> camera;
-	std::shared_ptr<FreeCamera> freeCamera;
-	std::shared_ptr<FocusCamera> focusCamera;
-
+	Player* player;
+	CameraMode currentMode;
+	Input* input;
+	CameraBase* camera;
+	FreeCamera* freeCamera;
+	FocusCamera* focusCamera;
 };

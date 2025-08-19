@@ -51,11 +51,22 @@ void Animation::Update()
 		// 再生時間を進める
 		currentAnimCount += ANIM_PLAY_SPEED;
 
-		// 通常はループさせる
-		if (currentAnimCount >= animTotalTime)
+		// ジャンプアニメーションのときだけ、ループさせない
+		//if (MV1GetAttachAnim(modelHandle, currentPlayAnim) == static_cast<int>(PlayerAnim::Jump))
+		//{
+		//	if (currentAnimCount >= animTotalTime)
+		//	{
+		//		currentAnimCount = animTotalTime - 0.001f; // 最後のフレームで止める
+		//	}
+		//}
+		//else
+		//{
+		//	// 通常はループさせる
+			if (currentAnimCount >= animTotalTime)
 			{
 				currentAnimCount = static_cast<float>(fmod(currentAnimCount, animTotalTime));
 			}
+		//}
 
 		// 変更した再生時間をモデルに反映させる
 		MV1SetAttachAnimTime(modelHandle, currentPlayAnim, currentAnimCount);
