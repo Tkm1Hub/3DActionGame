@@ -16,7 +16,7 @@ void Bullet::Init()
 	rot = VGet(0.0f, 0.0f, 0.0f);
 	modelHandle = -1;
 
-	isActive = false;
+	active = false;
 	moveVec = VGet(0.0f, 0.0f, 0.0f);
 }
 
@@ -25,23 +25,26 @@ void Bullet::Load()
 
 }
 
+// 更新処理
 void Bullet::Update()
 {
-	if (!isActive) return;
+	// 無効なら早期リターン
+	if (!active) return;
 	Move();
 
-	//lifeCount--;
+	lifeCount--;
 
-	//if (lifeCount <= 0)
-	//{
-	//	isActive = false;
-	//}
+	if (lifeCount <= 0)
+	{
+		Reset();
+	}
 }
+
 
 void Bullet::Draw()
 {
-	// 動作中なら描画
-	if (!isActive) return;
+	// 無効なら早期リターン
+	if (!active) return;
 	DrawSphere3D(pos, RADIUS, DIVNUM, GetColor(255, 0, 0), GetColor(0, 0, 0), TRUE);
 }
 
@@ -56,15 +59,24 @@ void Bullet::Move()
 	}
 }
 
+// プレイヤーに当たった際の処理
 void Bullet::HitPlayer()
 {
 	// プレイヤーに当たったら非表示
-	isActive = false;
+	active = false;
 	pos = VGet(0.0f, 0.0f, 0.0f);
 }
 
+// 有効化
 void Bullet::Activate()
 {
-	isActive = true;
+	active = true;
 	lifeCount = LIFETIME;
+}
+
+// 無効化
+void Bullet::Reset()
+{
+	active = false;
+	pos = VGet(0.0f, 0.0f, 0.0f);
 }

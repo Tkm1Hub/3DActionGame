@@ -39,9 +39,7 @@ private:
 	float currentAngleSpeed;	// 現在のアングル変更速度
 	bool isMoveAngle;			// カメラが移動中かどうか
 
-	Player* player = nullptr;
 	CameraMode currentMode = CameraMode::Free;
-	Input* input = nullptr;
 	CameraBase* camera = nullptr;
 	FreeCamera* freeCamera = nullptr;
 	FocusCamera* focusCamera = nullptr;

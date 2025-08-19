@@ -9,7 +9,8 @@ public:
 
 	void Init();
 	void Update();
-	void Create(VECTOR pos,VECTOR moveVec);
+	void Create(const VECTOR& pos, const VECTOR& moveVec);
+	void Draw();
 
 private:
 	std::vector<std::shared_ptr<Bullet>> bullets;

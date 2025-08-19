@@ -12,7 +12,8 @@ class Stage;
 class StageCollision;
 class CollisionManager;
 class Shadow;
-class Bullet;
+//class Bullet;
+class BulletManager;
 
 class GameScene : public Scene
 {
@@ -32,7 +33,6 @@ public:
     /// @brief タイトルを描画します。
     void Draw() const override;
 
-
 private:
 
     // オブジェクトのポインタ
@@ -47,6 +47,7 @@ private:
     Shadow* shadow = nullptr;
     SkyDome* skyDome = nullptr;
 
-    std::shared_ptr<Bullet>bullet = nullptr;
+    //std::shared_ptr<Bullet>bullet = nullptr;
     std::shared_ptr<CollisionManager>collisionManager = nullptr;
+    std::shared_ptr<BulletManager>bulletMgr = nullptr;
 };

@@ -16,7 +16,6 @@ void CollisionManager::Update(Player& player, std::shared_ptr<Bullet>& bullet)
 	{
 		bullet->HitPlayer();
 	}
-
 }
 
 // ƒJƒvƒZƒ‹‚Æ‹…‚Ì“–‚½‚è”»’è

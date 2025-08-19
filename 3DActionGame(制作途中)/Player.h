@@ -82,14 +82,14 @@ private:
 
 
     // アニメーション関連変数
-    int			currentPlayAnim;		// 再生しているアニメーションのアタッチ番号( -1:何もアニメーションがアタッチされていない )
-    float		currentAnimCount;		// 再生しているアニメーションの再生時間
-    int			prevPlayAnim;			// 前の再生アニメーションのアタッチ番号( -1:何もアニメーションがアタッチされていない )
-    float		prevAnimCount;			// 前の再生アニメーションの再生時間
-    float		animBlendRate;			// 現在と過去のアニメーションのブレンド率
+    int			currentPlayAnim = 0;		// 再生しているアニメーションのアタッチ番号( -1:何もアニメーションがアタッチされていない )
+    float		currentAnimCount = 0.0f;		// 再生しているアニメーションの再生時間
+    int			prevPlayAnim = 0;			// 前の再生アニメーションのアタッチ番号( -1:何もアニメーションがアタッチされていない )
+    float		prevAnimCount = 0.0f;			// 前の再生アニメーションの再生時間
+    float		animBlendRate = 0.0f;			// 現在と過去のアニメーションのブレンド率
 
-    State currentState;
-    PlayerAnim currentAnimState;
+    State currentState = State::Stand;
+    PlayerAnim currentAnimState = PlayerAnim::Idle;
     Animation anim;
     Input* input;
     CameraBase* camera;
