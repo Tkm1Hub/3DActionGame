@@ -35,7 +35,7 @@ void GameScene::Init()
     cameraMgr = new CameraManager;
     shadow = new Shadow;
 
-    std::shared_ptr<Bullet>bullet = std::make_shared<Bullet>();
+    bullet = std::make_shared<Bullet>();
 
     //オブジェクトをリストに追加
     //objMgr->AddObject(new FreeCamera);
@@ -79,6 +79,7 @@ void GameScene::Update()
     enemy->Update(*stageColl);
     skyDome->Update(player->GetPosition());
     objMgr->UpdateAll();
+    bullet->Update();
 
     shadow->Update(player->GetPosition());
 }
@@ -94,6 +95,8 @@ void GameScene::Draw() const
             obj->Draw();
         }
     }
+
+    bullet->Draw();
 
     //シャドウマップへの描画を終了
     ShadowMap_DrawEnd();

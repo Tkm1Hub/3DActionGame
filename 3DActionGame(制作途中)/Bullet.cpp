@@ -8,13 +8,13 @@ Bullet::~Bullet(){}
 void Bullet::Init()
 {
 	name = "Bullet";
-	pos = VGet(0.0f, 5.0f, 0.0f);
+	pos = VGet(0.0f, 25.0f, 15.0f);
 	scale = VGet(0.0f, 0.0f, 0.0f);
 	rot = VGet(0.0f, 0.0f, 0.0f);
 	modelHandle = -1;
 
 	isActive = true;
-	moveVec = VGet(0.0f, 0.0f, 0.0f);
+	moveVec = VGet(1.0f, 0.0f, 0.0f);
 }
 
 void Bullet::Load()
@@ -24,7 +24,12 @@ void Bullet::Load()
 
 void Bullet::Update()
 {
+	Move();
 
+	if (pos.x > 100 || pos.x < -100)
+	{
+		moveVec.x *= -1;
+	}
 }
 
 void Bullet::Draw()
@@ -40,6 +45,7 @@ void Bullet::Move()
 {
 	if (isActive)
 	{
-
+		moveVec = VScale(moveVec, speed);
+		pos = VAdd(pos, moveVec);
 	}
 }

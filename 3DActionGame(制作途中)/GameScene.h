@@ -46,5 +46,5 @@ private:
     Shadow* shadow = nullptr;
     SkyDome* skyDome = nullptr;
 
-    std::shared_ptr<Bullet>bullet = nullptr;
+    std::shared_ptr<Bullet>bullet;
 };
