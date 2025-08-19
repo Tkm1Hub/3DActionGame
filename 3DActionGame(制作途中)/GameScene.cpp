@@ -69,7 +69,7 @@ void GameScene::Update()
 {
     // 各オブジェクトの更新処理
     input->Update();
-    cameraMgr->Update(input, player);
+    cameraMgr->Update();
 
     player->Update(*input, *cameraMgr->GetCurrentCamera(), *stageColl);
     enemy->Update(*stageColl);

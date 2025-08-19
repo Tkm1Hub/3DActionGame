@@ -12,7 +12,6 @@ public:
 
 	void Init() override;
 	void Update() override;
-	//void Update(const Input& input, const Player& player, const Enemy& enemy);
 	void Draw() override{};
 
 private:

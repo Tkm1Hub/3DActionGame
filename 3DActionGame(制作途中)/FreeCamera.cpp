@@ -27,7 +27,7 @@ void FreeCamera::Init()
 	SetCameraNearFar(0.1f, 1000.0f);
 }
 
-void FreeCamera::Update(const std::shared_ptr<Input>& input, const std::shared_ptr<Player>& player)
+void FreeCamera::Update()
 {
 	// ƒJƒƒ‰‚Ìù‰ñ‘¬“x‚ğŒvZ
 	currentAngleSpeed = CalcAngleSpeed(input);

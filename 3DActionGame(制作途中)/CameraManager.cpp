@@ -9,7 +9,6 @@ CameraManager::CameraManager(){}
 
 CameraManager::~CameraManager()
 {
-
 }
 
 void CameraManager::Init()
@@ -19,6 +18,8 @@ void CameraManager::Init()
 	//camera = new CameraBase;
 	//freeCamera = new FreeCamera;
 	//focusCamera = new FocusCamera;
+
+	std::shared_ptr<Input> input = std::make_shared<Input>();
 
 	camera->Init();
 	freeCamera->Init();
@@ -30,7 +31,7 @@ void CameraManager::Init()
 ///  更新処理
 /// </summary>
 /// <param name="input"></param>
-void CameraManager::Update(const std::shared_ptr<Input>& input,const std::shared_ptr<Player>& player)
+void CameraManager::Update()
 {
 	// L2ボタンでモード切替
 	if (input->GetNowFrameNewInput() & PAD_INPUT_5)
@@ -41,7 +42,7 @@ void CameraManager::Update(const std::shared_ptr<Input>& input,const std::shared
 	//モードごとに更新処理
 	if (currentMode == CameraMode::Free)
 	{
-		freeCamera->Update(input,player);
+		freeCamera->Update();
 		nextPosition = freeCamera->GetNextPosition();
 		nextTarget = freeCamera->GetNextTarget();
 	}

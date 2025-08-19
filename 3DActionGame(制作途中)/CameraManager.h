@@ -19,7 +19,7 @@ public:
 	~CameraManager();
 
 	void Init();
-	void Update(const std::shared_ptr<Input>& input,const std::shared_ptr<Player>& player);
+	void Update();
 	
 	CameraBase* GetCurrentCamera() const { return camera.get(); }
 private:
@@ -40,8 +40,7 @@ private:
 
 	CameraMode currentMode = CameraMode::Free;
 
-	std::shared_ptr<Player> player = nullptr;
-	std::shared_ptr<Input> input = nullptr;
+	std::shared_ptr<Input>input = nullptr;
 
 	std::shared_ptr<CameraBase> camera;
 	std::shared_ptr<FreeCamera> freeCamera;

@@ -11,8 +11,7 @@ public:
 	~FreeCamera();
 
 	void Init() override;
-	void Update()override {};
-	void Update(const std::shared_ptr<Input>& input,const std::shared_ptr<Player>& player);
+	void Update()override;
 	void Draw() override;
 
 	const VECTOR& GetTarget() const { return nextTarget; }
