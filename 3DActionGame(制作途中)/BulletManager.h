@@ -1,5 +1,6 @@
 #pragma once
 
+class Bullet;
 class BulletManager
 {
 public:
@@ -8,6 +9,8 @@ public:
 
 	void Init();
 	void Update();
-	void Create();
+	void Create(VECTOR pos,VECTOR moveVec);
 
+private:
+	std::vector<std::shared_ptr<Bullet>> bullets;
 };

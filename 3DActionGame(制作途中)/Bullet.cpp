@@ -1,20 +1,23 @@
 #include "stdafx.h"
 #include "Bullet.h"
 
-Bullet::Bullet(){}
+Bullet::Bullet()
+{
+	Init();
+}
 
 Bullet::~Bullet(){}
 
 void Bullet::Init()
 {
 	name = "Bullet";
-	pos = VGet(0.0f, 20.0f, 15.0f);
+	pos = VGet(0.0f, 0.0f, 0.0f);
 	scale = VGet(0.0f, 0.0f, 0.0f);
 	rot = VGet(0.0f, 0.0f, 0.0f);
 	modelHandle = -1;
 
-	isActive = true;
-	moveVec = VGet(1.0f, 0.0f, 0.0f);
+	isActive = false;
+	moveVec = VGet(0.0f, 0.0f, 0.0f);
 }
 
 void Bullet::Load()
@@ -27,12 +30,12 @@ void Bullet::Update()
 	if (!isActive) return;
 	Move();
 
-	lifeCount--;
+	//lifeCount--;
 
-	if (lifeCount <= 0)
-	{
-		isActive = false;
-	}
+	//if (lifeCount <= 0)
+	//{
+	//	isActive = false;
+	//}
 }
 
 void Bullet::Draw()

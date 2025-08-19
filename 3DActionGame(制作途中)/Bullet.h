@@ -12,11 +12,16 @@ public:
 	void Update() override;
 	void Draw() override;
 
-	VECTOR GetPosition() const { return pos; }
+	const VECTOR& GetPos() const { return pos; }
 	float GetRadius() const { return RADIUS; }
 
 	void HitPlayer();
 	void Activate();
+
+	bool IsActive() const { return isActive; }
+
+	void SetPosition(const VECTOR setPos) { pos = setPos; }
+	void SetMoveVec(const VECTOR setMoveVec) { moveVec = setMoveVec; }
 
 private:
 	// 定数
@@ -26,7 +31,7 @@ private:
 
 	// 変数
 	float speed = 1.0f;							// 弾の速度
-	bool isActive = true;						// 動作中か
+	bool isActive = false;						// 動作中か
 	VECTOR moveVec = VGet(0.0f, 0.0f, 0.0f);	// 移動ベクトル
 	int lifeCount = 0;							// 弾が発射されてからのフレーム
 	
