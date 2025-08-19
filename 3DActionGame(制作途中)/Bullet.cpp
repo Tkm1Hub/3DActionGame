@@ -24,29 +24,32 @@ void Bullet::Load()
 
 void Bullet::Update()
 {
+	if (!isActive) return;
 	Move();
+
+	lifeCount--;
+
+	if (lifeCount <= 0)
+	{
+		isActive = false;
+	}
 }
 
 void Bullet::Draw()
 {
 	// 動作中なら描画
-	if (isActive)
-	{
-		DrawSphere3D(pos, RADIUS, DIVNUM, GetColor(255, 0, 0), GetColor(0, 0, 0), TRUE);
-	}
+	if (!isActive) return;
+	DrawSphere3D(pos, RADIUS, DIVNUM, GetColor(255, 0, 0), GetColor(0, 0, 0), TRUE);
 }
 
 void Bullet::Move()
 {
-	if (isActive)
-	{
-		moveVec = VScale(moveVec, speed);
-		pos = VAdd(pos, moveVec);
+	moveVec = VScale(moveVec, speed);
+	pos = VAdd(pos, moveVec);
 
-		if (pos.x > 50 || pos.x < -50)
-		{
-			moveVec.x *= -1;
-		}
+	if (pos.x > 50 || pos.x < -50)
+	{
+		moveVec.x *= -1;
 	}
 }
 
@@ -55,4 +58,10 @@ void Bullet::HitPlayer()
 	// プレイヤーに当たったら非表示
 	isActive = false;
 	pos = VGet(0.0f, 0.0f, 0.0f);
+}
+
+void Bullet::Activate()
+{
+	isActive = true;
+	lifeCount = LIFETIME;
 }

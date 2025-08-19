@@ -45,17 +45,17 @@ public:
 private:
     static constexpr int DEADZONE = 10;     // スティックを倒してもすぐ反応しない領域
 
-    int nowFrameInput;          // 現在のフレームで押されているボタン
-    int nowFrameNewInput;       // 現在のフレームで新たに押されたボタン
-    bool isMoveRStick;          // 右スティックが傾いているか
-    bool isMoveLStick;          // 左スティックが傾いているか
+    int nowFrameInput = 0;          // 現在のフレームで押されているボタン
+    int nowFrameNewInput = 0;       // 現在のフレームで新たに押されたボタン
+    bool isMoveRStick = false;      // 右スティックが傾いているか
+    bool isMoveLStick = false;      // 左スティックが傾いているか
 
-    float leftStickX;           // 左スティックのX軸の傾き
-    float leftStickY;           // 左スティックのY軸の傾き
-    float rightStickX;          // 右スティックのX軸の傾き
-    float rightStickY;          // 右スティックのY軸の傾き
-    float LStickAngle;          // 左スティックの傾き度
-    float RStickAngle;          // 右スティックの傾き度
+    float leftStickX = 0.0f;        // 左スティックのX軸の傾き
+    float leftStickY = 0.0f;        // 左スティックのY軸の傾き
+    float rightStickX = 0.0f;       // 右スティックのX軸の傾き
+    float rightStickY = 0.0f;       // 右スティックのY軸の傾き
+    float LStickAngle = 0.0f;       // 左スティックの傾き度
+    float RStickAngle = 0.0f;       // 右スティックの傾き度
 
     void CalcStickInput();
 };
