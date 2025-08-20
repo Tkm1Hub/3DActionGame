@@ -79,11 +79,17 @@
     <Filter Include="ソース ファイル\GameObject\Bullet">
       <UniqueIdentifier>{cf3aae7f-b9a1-46ca-91bb-f810e6ec6be4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\BulletManager">
-      <UniqueIdentifier>{89ce046a-d679-4047-97d5-b5e4b700bd54}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\Collision\CollisionManager">
       <UniqueIdentifier>{e70957e6-ae83-4f16-86a4-fa5da2a1b410}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Skill">
+      <UniqueIdentifier>{e694305d-12da-4da0-83b3-bd0d297af9d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Skill\BulletFire">
+      <UniqueIdentifier>{ccdd490e-3502-461f-b20b-4ed1dcf79393}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\BulletCreator">
+      <UniqueIdentifier>{89ce046a-d679-4047-97d5-b5e4b700bd54}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -156,8 +162,11 @@
     <ClCompile Include="CollisionManager.cpp">
       <Filter>ソース ファイル\Collision\CollisionManager</Filter>
     </ClCompile>
-    <ClCompile Include="BulletManager.cpp">
-      <Filter>ソース ファイル\BulletManager</Filter>
+    <ClCompile Include="BulletCreator.cpp">
+      <Filter>ソース ファイル\BulletCreator</Filter>
+    </ClCompile>
+    <ClCompile Include="BulletFire.cpp">
+      <Filter>ソース ファイル\Skill\BulletFire</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -233,8 +242,11 @@
     <ClInclude Include="CollisionManager.h">
       <Filter>ソース ファイル\Collision\CollisionManager</Filter>
     </ClInclude>
-    <ClInclude Include="BulletManager.h">
-      <Filter>ソース ファイル\BulletManager</Filter>
+    <ClInclude Include="BulletCreator.h">
+      <Filter>ソース ファイル\BulletCreator</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletFire.h">
+      <Filter>ソース ファイル\Skill\BulletFire</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

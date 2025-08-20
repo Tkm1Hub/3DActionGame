@@ -2,6 +2,7 @@
 #include "Enemy.h"
 #include "StageCollision.h"
 #include "Animation.h"
+#include "BulletFire.h"
 
 Enemy::Enemy()
 {
@@ -49,7 +50,7 @@ void Enemy::Update(StageCollision& collision)
 	moveVec = VGet(0.0f, 0.0f, 0.0f);
 
 	// 敵ごとの攻撃処理
-	//Attack();
+
 
 	// ステージを考慮して移動
 	Move(moveVec, collision);

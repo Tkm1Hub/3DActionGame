@@ -147,7 +147,7 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="BulletManager.cpp" />
+    <ClCompile Include="BulletCreator.cpp" />
     <ClCompile Include="CameraBase.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="FreeCamera.cpp" />
@@ -206,6 +206,7 @@
     </ClCompile>
     <ClCompile Include="Shadow.cpp" />
     <ClCompile Include="SkyDome.cpp" />
+    <ClCompile Include="BulletFire.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="StageCollision.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -218,7 +219,7 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Bullet.h" />
-    <ClInclude Include="BulletManager.h" />
+    <ClInclude Include="BulletCreator.h" />
     <ClInclude Include="CameraBase.h" />
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="FreeCamera.h" />
@@ -238,6 +239,7 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Shadow.h" />
     <ClInclude Include="SkyDome.h" />
+    <ClInclude Include="BulletFire.h" />
     <ClInclude Include="Stage.h" />
     <ClInclude Include="StageCollision.h" />
     <ClInclude Include="stdafx.h" />

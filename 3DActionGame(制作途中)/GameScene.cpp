@@ -13,7 +13,6 @@
 #include "Shadow.h"
 #include "Debug.h"
 //#include "Bullet.h"
-#include "BulletManager.h"
 
 GameScene::GameScene(SceneManager& manager)
     : Scene{ manager } {
@@ -39,7 +38,6 @@ void GameScene::Init()
 
     //bullet = std::make_shared<Bullet>();
     collisionManager = std::make_shared<CollisionManager>();
-    bulletMgr = std::make_shared<BulletManager>();
 
     //オブジェクトをリストに追加
     //objMgr->AddObject(new FreeCamera);
@@ -59,7 +57,6 @@ void GameScene::Init()
     cameraMgr->Init();
     shadow->Init();
     //bullet->Init();
-    bulletMgr->Init();
 
     // オブジェクトのロード処理
     objMgr->LoadAll();
@@ -85,9 +82,8 @@ void GameScene::Update()
     skyDome->Update(player->GetPosition());
     objMgr->UpdateAll();
     //bullet->Update();
-    bulletMgr->Update(*enemy,*player);
 
-    collisionManager->Update(*player, bulletMgr->GetBullets());
+    //collisionManager->Update(*player, bulletMgr->GetBullets());
 
     shadow->Update(player->GetPosition());
 }
@@ -113,7 +109,6 @@ void GameScene::Draw() const
     // オブジェクトの描画
     objMgr->DrawAll();
     //bullet->Draw();
-    bulletMgr->Draw();
 
     // 描画に使用するシャドウマップの設定を解除
     SetUseShadowMap(0, -1);

@@ -13,7 +13,6 @@ class StageCollision;
 class CollisionManager;
 class Shadow;
 //class Bullet;
-class BulletManager;
 
 class GameScene : public Scene
 {
@@ -49,5 +48,4 @@ private:
 
     //std::shared_ptr<Bullet>bullet = nullptr;
     std::shared_ptr<CollisionManager>collisionManager = nullptr;
-    std::shared_ptr<BulletManager>bulletMgr = nullptr;
 };
