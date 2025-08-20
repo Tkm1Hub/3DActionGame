@@ -12,7 +12,7 @@ void BulletFire::Update()
 }
 
 // ‘S•ûŒü‚É’e‚ğ”­Ë
-void BulletFire::FireAllDirection(BulletCreator& bulletCreator,const VECTOR& pos, int bulletNum)
+void BulletFire::FireAllDirection(const VECTOR& pos, int bulletNum)
 {
 	// ’e‚Ì”­Ë•ûŒü
 	VECTOR bulletFireDirection = VGet(0.0f, 0.0f, 1.0f);	// ‰Šú’l‚Í+Z•ûŒü
@@ -25,8 +25,8 @@ void BulletFire::FireAllDirection(BulletCreator& bulletCreator,const VECTOR& pos
 	for (int i = 0; i < bulletNum + 1; i++)
 	{
 		// ’e‚ğ¶¬
-		bulletCreator.Create(bulletFirePos, bulletFireDirection);
-		
+		BulletCreator::GetBulletCreator().Create(pos, bulletFireDirection);
+
 		// Šp“x•ÏX
 		RotateXZ(bulletFireDirection, bulletAngleDiff);
 	}

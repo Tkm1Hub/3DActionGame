@@ -1,6 +1,5 @@
 #pragma once
 
-class BulletCreator;
 class BulletFire
 {
 public:
@@ -8,7 +7,7 @@ public:
 
 	void Init();
 	void Update();
-	void FireAllDirection(BulletCreator& bulletMgr,const VECTOR& pos,int bulletNum);
+	void FireAllDirection(const VECTOR& pos,int bulletNum);
 		
 private:
 	static constexpr int BULLET_NUM = 6;	// àÍìxÇ…î≠é‘Ç∑ÇÈíeÇÃêî

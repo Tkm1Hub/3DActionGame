@@ -20,6 +20,8 @@ void Enemy::Init()
 	currentState = State::Stand;
 	isJumping = false;
 	currentJumpPower = 0.0f;
+
+	bulletFire = std::make_shared<BulletFire>();
 }
 
 //void Enemy::Load()
@@ -50,11 +52,11 @@ void Enemy::Update(StageCollision& collision)
 	moveVec = VGet(0.0f, 0.0f, 0.0f);
 
 	// 敵ごとの攻撃処理
-
+	// 仮にスペースキーで弾を発射する
+	bulletFire->FireAllDirection(pos, BULLET_FIRE_ALL_DIRECTION_NUM);
 
 	// ステージを考慮して移動
 	Move(moveVec, collision);
-
 
 	// アニメの更新
 
@@ -67,8 +69,6 @@ void Enemy::Draw()
 {
 	MV1DrawModel(modelHandle);
 }
-
-
 
 void Enemy::Move(VECTOR& moveVec, StageCollision& collision)
 {

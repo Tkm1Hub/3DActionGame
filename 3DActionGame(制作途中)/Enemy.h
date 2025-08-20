@@ -5,7 +5,7 @@
 
 class Animation;
 class StageCollision;
-
+class BulletFire;
 enum class AnimKind :int
 {
     None = -1,      // なし
@@ -53,6 +53,9 @@ protected:
     static constexpr float HIT_RADIUS = 4.0f;       // 当たり判定半径
     static constexpr float HIT_HEIGHT = 10.0f;       // 当たり判定高さ
 
+    // 全方向に弾を発射する際、一度に発射する弾の数
+    static constexpr int BULLET_FIRE_ALL_DIRECTION_NUM = 6;
+
     // 変数
     VECTOR upMoveVec;           // 上下の移動ベクトル
     VECTOR leftMoveVec;         // 左右の移動ベクトル
@@ -71,4 +74,5 @@ protected:
     void ChangeAnimState(int animKind) override {};
 
     //virtual void Attack() = 0;
+    std::shared_ptr<BulletFire>bulletFire = nullptr;
 };

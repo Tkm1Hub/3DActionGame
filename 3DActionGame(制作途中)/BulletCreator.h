@@ -18,7 +18,7 @@ private:
 
 public:
 	// インスタンスを取得するためのメソッド
-	static BulletCreator& getBulletCreator()
+	static BulletCreator& GetBulletCreator()
 	{
 		static BulletCreator instance;	// 静的変数としてインスタンスを定義
 		return instance;
