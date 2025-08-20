@@ -1,6 +1,8 @@
 #pragma once
 
 class Bullet;
+class Enemy;
+class Player;
 class BulletManager
 {
 public:
@@ -8,7 +10,7 @@ public:
 	~BulletManager();
 
 	void Init();
-	void Update();
+	void Update(const Enemy& enemy,const Player& player);
 	void Create(const VECTOR& pos, const VECTOR& moveVec);
 	void Draw();
 

@@ -8,6 +8,7 @@ Bullet::Bullet()
 
 Bullet::~Bullet(){}
 
+// 初期化
 void Bullet::Init()
 {
 	name = "Bullet";
@@ -20,10 +21,7 @@ void Bullet::Init()
 	moveVec = VGet(0.0f, 0.0f, 0.0f);
 }
 
-void Bullet::Load()
-{
-
-}
+void Bullet::Load(){}
 
 // 更新処理
 void Bullet::Update()
@@ -40,7 +38,7 @@ void Bullet::Update()
 	}
 }
 
-
+// 描画処理
 void Bullet::Draw()
 {
 	// 無効なら早期リターン
@@ -48,15 +46,11 @@ void Bullet::Draw()
 	DrawSphere3D(pos, RADIUS, DIVNUM, GetColor(255, 0, 0), GetColor(0, 0, 0), TRUE);
 }
 
+// 弾の移動
 void Bullet::Move()
 {
 	moveVec = VScale(moveVec, speed);
 	pos = VAdd(pos, moveVec);
-
-	if (pos.x > 50 || pos.x < -50)
-	{
-		moveVec.x *= -1;
-	}
 }
 
 // プレイヤーに当たった際の処理

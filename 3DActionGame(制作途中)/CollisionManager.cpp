@@ -32,7 +32,6 @@ bool CollisionManager::CapsuleSphereCollision(VECTOR capsuleAPos, VECTOR capsule
 	return dist <= (capsuleR + sphereR);
 }
 
-
 // ü•ªAB‚Æ“_P‚ÌÅ’Z‹——£‚ð‹‚ß‚é
 float CollisionManager::DistancePointSegment(VECTOR A, VECTOR B, VECTOR P)
 {

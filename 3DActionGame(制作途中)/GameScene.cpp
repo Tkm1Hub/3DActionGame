@@ -85,7 +85,7 @@ void GameScene::Update()
     skyDome->Update(player->GetPosition());
     objMgr->UpdateAll();
     //bullet->Update();
-    bulletMgr->Update();
+    bulletMgr->Update(*enemy,*player);
 
     collisionManager->Update(*player, bulletMgr->GetBullets());
 
