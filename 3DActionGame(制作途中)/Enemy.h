@@ -63,6 +63,7 @@ protected:
     bool isJumping;             // ジャンプ中か
     bool isFalling;             // 落下中かどうか
     bool isRunning;             // 走っているかどうか
+    bool pushSpace = false;     // スペースキーが押されているか
     State currentState;
     AnimKind currentAnimState; 
     Animation anim;
