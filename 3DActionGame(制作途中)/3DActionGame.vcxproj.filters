@@ -79,11 +79,11 @@
     <Filter Include="ソース ファイル\GameObject\Bullet">
       <UniqueIdentifier>{cf3aae7f-b9a1-46ca-91bb-f810e6ec6be4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Collision\ObjectCollision">
-      <UniqueIdentifier>{e70957e6-ae83-4f16-86a4-fa5da2a1b410}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\BulletManager">
       <UniqueIdentifier>{89ce046a-d679-4047-97d5-b5e4b700bd54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Collision\CollisionManager">
+      <UniqueIdentifier>{e70957e6-ae83-4f16-86a4-fa5da2a1b410}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -154,7 +154,7 @@
       <Filter>ソース ファイル\GameObject\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="CollisionManager.cpp">
-      <Filter>ソース ファイル\Collision\ObjectCollision</Filter>
+      <Filter>ソース ファイル\Collision\CollisionManager</Filter>
     </ClCompile>
     <ClCompile Include="BulletManager.cpp">
       <Filter>ソース ファイル\BulletManager</Filter>
@@ -231,7 +231,7 @@
       <Filter>ソース ファイル\GameObject\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="CollisionManager.h">
-      <Filter>ソース ファイル\Collision\ObjectCollision</Filter>
+      <Filter>ソース ファイル\Collision\CollisionManager</Filter>
     </ClInclude>
     <ClInclude Include="BulletManager.h">
       <Filter>ソース ファイル\BulletManager</Filter>

@@ -37,7 +37,6 @@ public:
     void OnHitFloor() override;      // 床に当たった時
     void OnFall() override;          // 落下が確定したとき
 
-
     // 状態の取得
     const enum class State GetState() const override { return currentState; }
     const float GetJumpPower() const override { return currentJumpPower; }
@@ -80,7 +79,6 @@ private:
     int runFrameCount = 0;          // 走り始めてからのフレーム
     int stopAnimCount = 0;          // ストップアニメーションのフレーム
 
-
     // アニメーション関連変数
     int			currentPlayAnim = 0;		// 再生しているアニメーションのアタッチ番号( -1:何もアニメーションがアタッチされていない )
     float		currentAnimCount = 0.0f;		// 再生しているアニメーションの再生時間
@@ -91,8 +89,6 @@ private:
     State currentState = State::Stand;
     PlayerAnim currentAnimState = PlayerAnim::Idle;
     Animation anim;
-    Input* input;
-    CameraBase* camera;
 
     void DisableRootFrameZMove();
     void UpdateMoveParameterWithPad(const Input& input, const CameraBase& camera);
