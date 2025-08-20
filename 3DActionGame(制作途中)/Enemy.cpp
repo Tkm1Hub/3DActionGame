@@ -53,7 +53,10 @@ void Enemy::Update(StageCollision& collision)
 
 	// 敵ごとの攻撃処理
 	// 仮にスペースキーで弾を発射する
-	bulletFire->FireAllDirection(pos, BULLET_FIRE_ALL_DIRECTION_NUM);
+	if (CheckHitKey(KEY_INPUT_SPACE))
+	{
+		bulletFire->FireAllDirection(pos, BULLET_FIRE_ALL_DIRECTION_NUM);
+	}
 
 	// ステージを考慮して移動
 	Move(moveVec, collision);
