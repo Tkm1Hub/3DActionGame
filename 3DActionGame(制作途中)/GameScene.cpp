@@ -13,6 +13,7 @@
 #include "Shadow.h"
 #include "Debug.h"
 //#include "Bullet.h"
+#include "BulletCreator.h"
 
 GameScene::GameScene(SceneManager& manager)
     : Scene{ manager } {
@@ -57,6 +58,7 @@ void GameScene::Init()
     cameraMgr->Init();
     shadow->Init();
     //bullet->Init();
+    BulletCreator::GetBulletCreator().Init();
 
     // オブジェクトのロード処理
     objMgr->LoadAll();
@@ -82,6 +84,7 @@ void GameScene::Update()
     skyDome->Update(player->GetPosition());
     objMgr->UpdateAll();
     //bullet->Update();
+    BulletCreator::GetBulletCreator().Update();
 
     //collisionManager->Update(*player, bulletMgr->GetBullets());
 
@@ -109,6 +112,7 @@ void GameScene::Draw() const
     // オブジェクトの描画
     objMgr->DrawAll();
     //bullet->Draw();
+    BulletCreator::GetBulletCreator().Draw();
 
     // 描画に使用するシャドウマップの設定を解除
     SetUseShadowMap(0, -1);

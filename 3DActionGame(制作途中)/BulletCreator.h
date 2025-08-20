@@ -1,8 +1,6 @@
 #pragma once
 
 class Bullet;
-class Enemy;
-class Player;
 class BulletCreator
 {
 private:
@@ -24,10 +22,8 @@ public:
 		return instance;
 	}
 
-
-
 	void Init();
-	void Update(const Enemy& enemy,const Player& player);
+	void Update();
 	void Create(const VECTOR& pos, const VECTOR& moveVec);
 	void Draw();
 

@@ -28,7 +28,7 @@ void BulletFire::FireAllDirection(const VECTOR& pos, int bulletNum)
 		BulletCreator::GetBulletCreator().Create(pos, bulletFireDirection);
 
 		// äpìxïœçX
-		RotateXZ(bulletFireDirection, bulletAngleDiff);
+		bulletFireDirection = RotateXZ(bulletFireDirection, bulletAngleDiff);
 	}
 }
 

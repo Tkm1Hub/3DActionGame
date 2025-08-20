@@ -1,8 +1,6 @@
 #include "stdafx.h"
 #include "BulletCreator.h"
 #include "Bullet.h"
-#include "Robot.h"
-#include "Player.h"
 
 void BulletCreator::Init()
 {
@@ -13,7 +11,7 @@ void BulletCreator::Init()
 	}
 }
 
-void BulletCreator::Update(const Enemy& enemy,const Player& player)
+void BulletCreator::Update()
 {
 	// óLå¯Ç»íeÇÃçXêV
 	for (auto& bullet : bullets)
