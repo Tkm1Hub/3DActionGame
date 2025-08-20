@@ -47,6 +47,11 @@ void Debug::Draw()
 				printfDx("runFramwCount : %f\n", player->GetRunFrameCount());
 
 				DrawCapsule(player);
+				// プレイヤーの頂点の球を描画
+				DrawSphere3D(player->GetCapsuleA(), player->GetHitRadius(), 8, GetColor(0, 255, 0), GetColor(255, 255, 255), FALSE);
+				// プレイヤーの足元の球を描画
+				DrawSphere3D(player->GetCapsuleB(), player->GetHitRadius(), 8, GetColor(0, 255, 0), GetColor(255, 255, 255), FALSE);
+
 			}
 		}
 
@@ -73,6 +78,6 @@ void Debug::Draw()
 void Debug::DrawCapsule(const Character* character)
 {
 	DrawCapsule3D(VGet(character->GetPosition().x, character->GetPosition().y + character->GetHitRadius(), character->GetPosition().z)
-		, VGet(character->GetPosition().x, character->GetPosition().y + character->GetHitHeight() + character->GetHitRadius(), character->GetPosition().z)
+		, VGet(character->GetPosition().x, character->GetPosition().y + character->GetHitHeight(), character->GetPosition().z)
 			, character->GetHitRadius(), 8, GetColor(0, 255, 0), GetColor(255, 255, 255), FALSE);
 }

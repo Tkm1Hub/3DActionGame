@@ -16,7 +16,6 @@ public:
 
 private:
 
-	Player* player;
 	std::shared_ptr<Bullet>bullet;
 	std::vector<std::shared_ptr<Bullet>>bullets;
 

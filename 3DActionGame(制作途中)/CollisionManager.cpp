@@ -37,7 +37,7 @@ bool CollisionManager::CapsuleSphereCollision(VECTOR capsuleAPos, VECTOR capsule
 float CollisionManager::DistancePointSegment(VECTOR A, VECTOR B, VECTOR P)
 {
 	VECTOR AB = VSub(B, A);
-	VECTOR AP = VSub(A, P);
+	VECTOR AP = VSub(P, A);
 
 	float ab2 = VDot(AB, AB);		// |AB|^2
 	float ap_ab = VDot(AP, AB);		// APÇ∆ABÇÃì‡êœ

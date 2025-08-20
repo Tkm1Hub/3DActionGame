@@ -20,7 +20,7 @@ void BulletManager::Update()
 	// 仮にスペースキーで弾を生成
 	if (CheckHitKey(KEY_INPUT_SPACE))
 	{
-		Create(VGet(0.0f, 25.0f, 30.0f), VGet(1.0f, 0.0f, 0.0f));
+		Create(VGet(20.0f, 25.0f, 0.0f), VGet(1.0f, 0.0f, 0.0f));
 	}
 
 	// 有効な弾の更新

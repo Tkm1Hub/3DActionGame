@@ -634,7 +634,7 @@ void Player::Draw()
 
 const VECTOR Player::GetCapsuleA()
 {
-	VECTOR CapsuleA = VGet(pos.x, pos.y + HIT_RADIUS + HIT_HEIGHT, pos.z);
+	VECTOR CapsuleA = VGet(pos.x, pos.y + HIT_HEIGHT, pos.z);
 	return CapsuleA;
 }
 

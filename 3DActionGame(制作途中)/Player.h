@@ -66,7 +66,7 @@ private:
     static constexpr float ANIM_PLAY_SPEED = 0.4f;  // アニメーションの再生速度
     static constexpr float ANIM_BLEND_SPEED = 0.1f; // アニメーションのブレンド率変化速度
     static constexpr float HIT_RADIUS = 3.0f;       // 当たり判定半径
-    static constexpr float HIT_HEIGHT = 13.5f;       // 当たり判定高さ
+    static constexpr float HIT_HEIGHT = 16.5f;       // 当たり判定高さ
     static constexpr int STOP_ANIM_DURATION = 27;   // ストップアニメーションの最大フレーム数
 
     // 変数
