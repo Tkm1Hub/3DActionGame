@@ -27,7 +27,7 @@ void Enemy::Init()
 	currentJumpPower = 0.0f;
 
 	animation = new Animation;
-	bulletFire = std::make_shared<BulletFire>();
+	bulletFire = std::make_shared<BulletFire>(this);
 }
 
 //void Enemy::Load()
@@ -63,7 +63,7 @@ void Enemy::Update(StageCollision& collision)
 	{
 		if (!pushSpace)
 		{
-			isFireBarrage = true;
+			bulletFire->SetIsActiveBarrage(true);
 		}
 	}
 	else
@@ -71,11 +71,8 @@ void Enemy::Update(StageCollision& collision)
 		pushSpace = false;
 	}
 
-	// 射撃中なら弾幕を発射
-	if (isFireBarrage)
-	{
-		bulletFire->FireHorizontalBarrage(GetHeadPos(), isFireBarrage);
-	}
+	// BulletFireの更新
+	bulletFire->Update();
 
 	// ステージを考慮して移動
 	Move(moveVec, collision);

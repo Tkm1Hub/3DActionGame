@@ -1,14 +1,17 @@
 #pragma once
+class Character;
 
 class BulletFire
 {
 public:
-	BulletFire();
+	BulletFire(Character* obj) : character(obj){}
 
 	void Init();
 	void Update();
 	void FireAllDirection(const VECTOR& pos,int bulletNum, float angleOffset);
-	void FireHorizontalBarrage(const VECTOR& pos, bool& isFireBarrage);
+	void FireHorizontalBarrage(const VECTOR& pos);
+
+	void SetIsActiveBarrage(bool isActive) { isActiveBarrage = isActive; }
 		
 private:
 	// 定数
@@ -21,11 +24,15 @@ private:
 	static constexpr float BARRAGE_ANGLE_OFFSET = 0.15f;
 
 	// 変数
-	float burrageFireAngle = 0.0f; // 弾幕発射角度の基準値
-	int barrageFireLoopCount = 0;        // 弾幕ループ回数のカウント
-	float BarrageFrameCount = 0.0f;  // 弾幕を発射するフレームのカウント
+	int barrageFireLoopCount = 0;		// 弾幕ループ回数のカウント
 
-	float shotAngle = 0.0f;					// 発射角度
-	
+	bool isActiveBarrage = false;		// 弾幕発射中か
+
+	float barrageFireAngle = 0.0f;		// 弾幕発射角度の基準値
+	float BarrageFrameCount = 0.0f;		// 弾幕を発射するフレームのカウント
+	float shotAngle = 0.0f;				// 発射角度
+
 	VECTOR RotateXZ(const VECTOR& dir,float angle);	// 水平方向に回転
+
+	Character* character;
 };

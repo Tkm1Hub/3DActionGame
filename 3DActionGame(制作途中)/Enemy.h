@@ -12,7 +12,7 @@ enum class AnimKind :int
     Idle = 0,       //立ち止まり
 };
 
-class Enemy:public Character
+class Enemy:public Character , std::enable_shared_from_this<Enemy>
 {
 public:
 	Enemy();
@@ -33,7 +33,7 @@ public:
 
     const float GetHitRadius() const override { return HIT_RADIUS; }
     const float GetHitHeight() const override { return HIT_HEIGHT; }
-
+    const VECTOR& GetBulletSpawnPos() override { return GetHeadPos(); }
 
 	void OnHitRoof() override;
 	void OnHitFloor() override;
@@ -63,7 +63,7 @@ protected:
     bool isFalling;             // 落下中かどうか
     bool isRunning;             // 走っているかどうか
     bool pushSpace = false;     // スペースキーが押されているか
-    bool isFireBarrage = false;    // 弾幕発射中か
+    bool isBarrageActive = false;    // 弾幕発射中か
     State currentState;
     AnimKind currentAnimState; 
     Animation* animation;

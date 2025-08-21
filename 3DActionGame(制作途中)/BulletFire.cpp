@@ -3,12 +3,17 @@
 #include "BulletCreator.h"
 #include "Enemy.h"
 
-BulletFire::BulletFire(){}
-
 void BulletFire::Init(){}
 
 void BulletFire::Update()
 {
+	if (isActiveBarrage)
+	{
+		if (Character* obj = dynamic_cast<Character*>(character))
+		{
+			FireHorizontalBarrage(obj->GetBulletSpawnPos());
+		}
+	}
 }
 
 // 全方向に弾を発射
@@ -35,14 +40,14 @@ void BulletFire::FireAllDirection(const VECTOR& pos, int bulletNum,float angleOf
 }
 
 // 水平方向にのみ弾幕発射
-void BulletFire::FireHorizontalBarrage(const VECTOR& pos , bool& isFireBarrage)
+void BulletFire::FireHorizontalBarrage(const VECTOR& pos)
 {
 	// フレームカウントが0かつループ回数内のみ発射
 	if (BarrageFrameCount == 0 && barrageFireLoopCount <= BARRAGE_FIRE_LOOP_NUM)
 	{
-		FireAllDirection(pos, BULLET_FIRE_ALL_DIRECTION_NUM, burrageFireAngle);
+		FireAllDirection(pos, BULLET_FIRE_ALL_DIRECTION_NUM, barrageFireAngle);
 		barrageFireLoopCount++;
-		burrageFireAngle += BARRAGE_ANGLE_OFFSET;
+		barrageFireAngle += BARRAGE_ANGLE_OFFSET;
 	}
 
 	BarrageFrameCount++;
@@ -53,9 +58,9 @@ void BulletFire::FireHorizontalBarrage(const VECTOR& pos , bool& isFireBarrage)
 
 	if (barrageFireLoopCount == BARRAGE_FIRE_LOOP_NUM + 1)
 	{
-		isFireBarrage = false;
+		isActiveBarrage = false;
 		barrageFireLoopCount = 0;
-		burrageFireAngle = 0;
+		barrageFireAngle = 0;
 	}
 }
 
