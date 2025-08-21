@@ -26,6 +26,8 @@ GameScene::~GameScene()
     delete input;
     delete cameraMgr;
     delete shadow;
+
+    delete enemy;
 }
 
 void GameScene::Init()

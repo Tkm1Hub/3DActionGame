@@ -12,7 +12,7 @@ enum class AnimKind :int
     Idle = 0,       //立ち止まり
 };
 
-class Enemy:public Character , std::enable_shared_from_this<Enemy>
+class Enemy:public Character 
 {
 public:
 	Enemy();
@@ -62,7 +62,8 @@ protected:
     bool isJumping;             // ジャンプ中か
     bool isFalling;             // 落下中かどうか
     bool isRunning;             // 走っているかどうか
-    bool pushSpace = false;     // スペースキーが押されているか
+    bool pushF1 = false;        // F1が押されているか
+    bool pushF2 = false;        // F2が押されているか
     bool isBarrageActive = false;    // 弾幕発射中か
     State currentState;
     AnimKind currentAnimState; 
@@ -75,5 +76,6 @@ protected:
     void ChangeAnimState(int animKind) override {};
 
     //virtual void Attack() = 0;
-    std::shared_ptr<BulletFire>bulletFire = nullptr;
+    //std::shared_ptr<BulletFire>bulletFire = nullptr;
+    BulletFire* bulletFire = nullptr;
 };

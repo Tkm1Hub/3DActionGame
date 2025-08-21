@@ -16,6 +16,7 @@ Enemy::Enemy()
 Enemy::~Enemy()
 {
 	delete animation;
+	delete bulletFire;
 }
 
 void Enemy::Init()
@@ -27,7 +28,9 @@ void Enemy::Init()
 	currentJumpPower = 0.0f;
 
 	animation = new Animation;
-	bulletFire = std::make_shared<BulletFire>(this);
+	//bulletFire = std::make_shared<BulletFire>(this);
+	bulletFire = new BulletFire();
+	bulletFire->SetCharacter(this);
 }
 
 //void Enemy::Load()
@@ -58,17 +61,32 @@ void Enemy::Update(StageCollision& collision)
 	moveVec = VGet(0.0f, 0.0f, 0.0f);
 
 	// 敵ごとの攻撃処理
-	// 仮にスペースキーで弾を発射する
-	if (CheckHitKey(KEY_INPUT_SPACE))
+	// 仮にF1キーで弾幕を発射する（水平）
+	if (CheckHitKey(KEY_INPUT_F1))
 	{
-		if (!pushSpace)
+		if (!pushF1)
 		{
-			bulletFire->SetIsActiveBarrage(true);
+			bulletFire->SetIsActiveHorizontalBarrage(true);
+			pushF1 = true;
 		}
 	}
 	else
 	{
-		pushSpace = false;
+		pushF1 = false;
+	}
+
+	// 仮にF2キーで弾幕を発射する（ウェーブ状）
+	if (CheckHitKey(KEY_INPUT_F2))
+	{
+		if (!pushF2)
+		{
+			bulletFire->SetIsActiveWaveBarrage(true);
+			pushF2 = true;
+		}
+	}
+	else
+	{
+		pushF2 = false;
 	}
 
 	// BulletFireの更新
