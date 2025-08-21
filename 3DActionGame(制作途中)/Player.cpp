@@ -14,6 +14,11 @@ Player::Player()
 	modelHandle = -1;
 }
 
+Player::~Player()
+{
+	delete animation;
+}
+
 void Player::Init()
 {
 	std::ifstream ifs("Player.Json");
@@ -27,6 +32,7 @@ void Player::Init()
 	currentAnimState = PlayerAnim::Idle;
 	currentPlayAnim = 1;
 	prevPlayAnim = 1;
+	animation = new Animation;
 }
 
 void Player::Load(const char* FilePath)
@@ -41,8 +47,8 @@ void Player::Load(const char* FilePath)
 	MV1SetScale(modelHandle, scale);
 
 	// アニメーションのロード
-	anim.LoadAnimation(modelHandle);
-	anim.Play(static_cast<int>(PlayerAnim::Idle));
+	animation->LoadAnimation(modelHandle);
+	animation->Play(static_cast<int>(PlayerAnim::Idle));
 }
 
 void Player::Update(const Input&input,const CameraBase& camera,StageCollision& collision)
@@ -67,7 +73,7 @@ void Player::Update(const Input&input,const CameraBase& camera,StageCollision& c
 	UpdateAnimState(prevState);
 
 	// アニメーションの更新
-	anim.Update();
+	animation->Update();
 	//UpdateAnimation();
 
 
@@ -270,7 +276,7 @@ void Player::UpdateAnimState(State prevState)
 
 		if (stopAnimCount >= STOP_ANIM_DURATION)
 		{
-			anim.Play(static_cast<int>(PlayerAnim::Idle));
+			animation->Play(static_cast<int>(PlayerAnim::Idle));
 			isPlayingStopAnim = false;
 		}
 
@@ -281,17 +287,17 @@ void Player::UpdateAnimState(State prevState)
 	if (prevState == State::Stand && currentState == State::Walk)
 	{
 		// 歩きモーションを再生
-		anim.Play(static_cast<int>(PlayerAnim::Walk));
+		animation->Play(static_cast<int>(PlayerAnim::Walk));
 	}
 	// 歩き→立ち止まり
 	else if (prevState == State::Walk && currentState == State::Stand)
 	{
-		anim.Play(static_cast<int>(PlayerAnim::Idle));
+		animation->Play(static_cast<int>(PlayerAnim::Idle));
 	}
 	// 走り→立ち止まり
 	else if (prevState == State::Run && currentState == State::Stand)
 	{
-		anim.Play(static_cast<int>(PlayerAnim::RunStop));
+		animation->Play(static_cast<int>(PlayerAnim::RunStop));
 		isPlayingStopAnim = true;
 		stopAnimCount = 0;
 	}
@@ -302,7 +308,7 @@ void Player::UpdateAnimState(State prevState)
 			// 現在走りアニメーションじゃない場合、走りアニメに切り替え
 			if (MV1GetAttachAnim(modelHandle, currentPlayAnim) != static_cast<int>(PlayerAnim::RunPose))
 			{
-				anim.Play(static_cast<int>(PlayerAnim::RunPose));
+				animation->Play(static_cast<int>(PlayerAnim::RunPose));
 			}
 		}
 		else
@@ -310,7 +316,7 @@ void Player::UpdateAnimState(State prevState)
 			// 現在走りアニメーションじゃない場合、走りアニメに切り替え
 			if (MV1GetAttachAnim(modelHandle, currentPlayAnim) != static_cast<int>(PlayerAnim::Run))
 			{
-				anim.Play(static_cast<int>(PlayerAnim::Run));
+				animation->Play(static_cast<int>(PlayerAnim::Run));
 			}
 		}
 	}
@@ -324,7 +330,7 @@ void Player::UpdateAnimState(State prevState)
 			// 現在のアニメーションがジャンプ用なら、落下アニメに切り替え
 			if (MV1GetAttachAnim(modelHandle, currentPlayAnim) == static_cast<int>(PlayerAnim::Jump))
 			{
-				anim.Play(static_cast<int>(PlayerAnim::Fall));
+				animation->Play(static_cast<int>(PlayerAnim::Fall));
 			}
 		}
 		else
@@ -332,7 +338,7 @@ void Player::UpdateAnimState(State prevState)
 			// 現在ジャンプアニメでない場合、ジャンプアニメに切り替え
 			if (MV1GetAttachAnim(modelHandle, currentPlayAnim) != static_cast<int>(PlayerAnim::Jump))
 			{
-				anim.Play(static_cast<int>(PlayerAnim::Jump));
+				animation->Play(static_cast<int>(PlayerAnim::Jump));
 				// ジャンプ初めはブレンドを行わない
 				//animBlendRate = 1.0f;
 			}
@@ -468,25 +474,25 @@ void Player::OnHitFloor()
 			if (isRunning)
 			{
 				// 移動している場合は走り状態に
-				anim.Play(static_cast<int>(PlayerAnim::Run));
+				animation->Play(static_cast<int>(PlayerAnim::Run));
 				currentState = State::Run;
 			}
 			else
 			{
 				// 移動している場合は走り状態に
-				anim.Play(static_cast<int>(PlayerAnim::Walk));
+				animation->Play(static_cast<int>(PlayerAnim::Walk));
 				currentState = State::Walk;
 			}
 		}
 		else
 		{
 			// 移動していない場合は立ち止り状態に
-			anim.Play(static_cast<int>(PlayerAnim::Idle));
+			animation->Play(static_cast<int>(PlayerAnim::Idle));
 			currentState = State::Stand;
 		}
 
 		// 着地時はアニメーションのブレンドは行わない
-		anim.SetBlendRate(1.0f);
+		animation->SetBlendRate(1.0f);
 		isJumping = false;
 	}
 }

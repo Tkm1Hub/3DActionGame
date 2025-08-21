@@ -26,6 +26,7 @@ class Player:public Character
 public:
 
     Player();
+    ~Player();
 
     void Init() override;
     void Load(const char* FiePath) override;
@@ -88,7 +89,7 @@ private:
 
     State currentState = State::Stand;
     PlayerAnim currentAnimState = PlayerAnim::Idle;
-    Animation anim;
+    Animation* animation = nullptr;
 
     void DisableRootFrameZMove();
     void UpdateMoveParameterWithPad(const Input& input, const CameraBase& camera);
