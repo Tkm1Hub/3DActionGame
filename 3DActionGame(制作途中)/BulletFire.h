@@ -8,7 +8,7 @@ public:
 	void Init();
 	void Update();
 	void FireAllDirection(const VECTOR& pos,int bulletNum, float angleOffset);
-	void BarrageFire(const VECTOR& pos, bool& isFireBarrage);
+	void FireHorizontalBarrage(const VECTOR& pos, bool& isFireBarrage);
 		
 private:
 	// íËêî

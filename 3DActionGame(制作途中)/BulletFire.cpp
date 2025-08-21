@@ -34,8 +34,8 @@ void BulletFire::FireAllDirection(const VECTOR& pos, int bulletNum,float angleOf
 	}
 }
 
-// 弾幕発射
-void BulletFire::BarrageFire(const VECTOR& pos , bool& isFireBarrage)
+// 水平方向にのみ弾幕発射
+void BulletFire::FireHorizontalBarrage(const VECTOR& pos , bool& isFireBarrage)
 {
 	// フレームカウントが0かつループ回数内のみ発射
 	if (BarrageFrameCount == 0 && barrageFireLoopCount <= BARRAGE_FIRE_LOOP_NUM)
@@ -57,7 +57,6 @@ void BulletFire::BarrageFire(const VECTOR& pos , bool& isFireBarrage)
 		barrageFireLoopCount = 0;
 		burrageFireAngle = 0;
 	}
-
 }
 
 // 水平方向の回転

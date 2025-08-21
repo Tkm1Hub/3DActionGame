@@ -74,7 +74,7 @@ void Enemy::Update(StageCollision& collision)
 	// 射撃中なら弾幕を発射
 	if (isFireBarrage)
 	{
-		bulletFire->BarrageFire(GetHeadPos(), isFireBarrage);
+		bulletFire->FireHorizontalBarrage(GetHeadPos(), isFireBarrage);
 	}
 
 	// ステージを考慮して移動
