@@ -45,7 +45,8 @@ void Enemy::Init()
 void Enemy::Load(const char* FilePath)
 {
 	modelHandle = MV1LoadModel(FilePath);
-	MV1SetScale(modelHandle, scale);
+	//MV1SetScale(modelHandle, scale);
+	MV1SetScale(modelHandle, VGet(0.2f,0.2f,0.2f));
 	MV1SetPosition(modelHandle, pos);
 }
 

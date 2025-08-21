@@ -23,7 +23,7 @@ public:
 	// ゲッター
 	virtual const enum class State GetState() const = 0;
 	virtual const float GetJumpPower() const = 0;
-	virtual const VECTOR& GetBulletSpawnPos() { return VGet(0.0f,0.0f,0.0f); }	// 弾を発射する座標
+	virtual const VECTOR GetBulletSpawnPos() { return VGet(0.0f,0.0f,0.0f); }	// 弾を発射する座標
 
 	// 当たり判定
 	virtual const float GetHitRadius() const = 0;

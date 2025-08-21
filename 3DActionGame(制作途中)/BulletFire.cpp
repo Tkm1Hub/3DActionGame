@@ -96,7 +96,7 @@ void BulletFire::FireWaveBarrage(const VECTOR& firePos)
 
 	barrageFireAngleV = std::clamp(barrageFireAngleV, 0.0f, 0.8f);
 
-	if (barrageFireAngleV >= 0.4f || barrageFireAngleV <= 0.0f)
+	if (barrageFireAngleV <= -0.4f || barrageFireAngleV >= 0.0f)
 	{
 		barrageFireAngleVOffset *= -1;
 	}

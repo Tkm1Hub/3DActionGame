@@ -28,12 +28,12 @@ public:
 
     // èÛë‘ÇÃéÊìæ
     const enum class State GetState() const override { return currentState; }
-    const VECTOR& GetHeadPos() const { return VGet(pos.x, pos.y + HIT_HEIGHT, pos.z); }
+    const VECTOR GetHeadPos() const { return VGet(pos.x, pos.y + HIT_HEIGHT, pos.z); }
     const float GetJumpPower() const override { return currentJumpPower; }
 
     const float GetHitRadius() const override { return HIT_RADIUS; }
     const float GetHitHeight() const override { return HIT_HEIGHT; }
-    const VECTOR& GetBulletSpawnPos() override { return GetHeadPos(); }
+    const VECTOR GetBulletSpawnPos() override { return GetHeadPos(); }
 
 	void OnHitRoof() override;
 	void OnHitFloor() override;
