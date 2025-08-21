@@ -12,10 +12,12 @@ void BulletFire::Update()
 }
 
 // 全方向に弾を発射
-void BulletFire::FireAllDirection(const VECTOR& pos, int bulletNum)
+void BulletFire::FireAllDirection(const VECTOR& pos, int bulletNum,float angleOffset)
 {
 	// 弾の発射方向
 	VECTOR bulletFireDirection = VGet(0.0f, 0.0f, 1.0f);	// 初期値は+Z方向
+	// 角度の基準値を代入
+	bulletFireDirection = RotateXZ(bulletFireDirection, angleOffset);
 	// 弾の発射座標
 	VECTOR bulletFirePos = pos;
 	// 弾ごとの角度間隔
@@ -30,6 +32,32 @@ void BulletFire::FireAllDirection(const VECTOR& pos, int bulletNum)
 		// 角度変更
 		bulletFireDirection = RotateXZ(bulletFireDirection, bulletAngleDiff);
 	}
+}
+
+// 弾幕発射
+void BulletFire::BarrageFire(const VECTOR& pos , bool& isFireBarrage)
+{
+	// フレームカウントが0かつループ回数内のみ発射
+	if (BarrageFrameCount == 0 && barrageFireLoopCount <= BARRAGE_FIRE_LOOP_NUM)
+	{
+		FireAllDirection(pos, BULLET_FIRE_ALL_DIRECTION_NUM, burrageFireAngle);
+		barrageFireLoopCount++;
+		burrageFireAngle += BARRAGE_ANGLE_OFFSET;
+	}
+
+	BarrageFrameCount++;
+	if (BarrageFrameCount == 10)
+	{
+		BarrageFrameCount = 0;
+	}
+
+	if (barrageFireLoopCount == BARRAGE_FIRE_LOOP_NUM + 1)
+	{
+		isFireBarrage = false;
+		barrageFireLoopCount = 0;
+		burrageFireAngle = 0;
+	}
+
 }
 
 // 水平方向の回転

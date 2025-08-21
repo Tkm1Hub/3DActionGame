@@ -13,6 +13,11 @@ Enemy::Enemy()
 	modelHandle = -1;
 }
 
+Enemy::~Enemy()
+{
+	delete animation;
+}
+
 void Enemy::Init()
 {
 	pos = INIT_POS;
@@ -21,6 +26,7 @@ void Enemy::Init()
 	isJumping = false;
 	currentJumpPower = 0.0f;
 
+	animation = new Animation;
 	bulletFire = std::make_shared<BulletFire>();
 }
 
@@ -57,8 +63,7 @@ void Enemy::Update(StageCollision& collision)
 	{
 		if (!pushSpace)
 		{
-			bulletFire->FireAllDirection(pos, BULLET_FIRE_ALL_DIRECTION_NUM);
-			pushSpace = true;
+			isFireBarrage = true;
 		}
 	}
 	else
@@ -66,13 +71,18 @@ void Enemy::Update(StageCollision& collision)
 		pushSpace = false;
 	}
 
+	// 射撃中なら弾幕を発射
+	if (isFireBarrage)
+	{
+		bulletFire->BarrageFire(GetHeadPos(), isFireBarrage);
+	}
 
 	// ステージを考慮して移動
 	Move(moveVec, collision);
 
 	// アニメの更新
 
-	anim.Update();
+	animation->Update();
 
 	MV1SetPosition(modelHandle, pos);
 }
@@ -156,18 +166,18 @@ void Enemy::OnHitFloor()
 		if (isMove)
 		{
 			// 移動している場合は走り状態に
-			anim.Play(static_cast<int>(AnimKind::Idle));
+			animation->Play(static_cast<int>(AnimKind::Idle));
 			currentState = State::Run;
 		}
 		else
 		{
 			// 移動していない場合は立ち止り状態に
-			anim.Play(static_cast<int>(AnimKind::Idle));
+			animation->Play(static_cast<int>(AnimKind::Idle));
 			currentState = State::Stand;
 		}
 
 		// 着地時はアニメーションのブレンドは行わない
-		anim.SetBlendRate(1.0f);
+		animation->SetBlendRate(1.0f);
 	}
 }
 
@@ -187,7 +197,7 @@ void Enemy::OnFall()
 		currentJumpPower = FallUpPower;
 
 		// アニメーションは落下中のものにする
-		anim.Play(static_cast<int>(AnimKind::Idle));
+		animation->Play(static_cast<int>(AnimKind::Idle));
 	}
 }
 

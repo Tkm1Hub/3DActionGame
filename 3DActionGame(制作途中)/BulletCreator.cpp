@@ -5,7 +5,7 @@
 void BulletCreator::Init()
 {
 	// ‰¼‚É100”­—pˆÓ
-	for (int i = 0; i < 101; i++)
+	for (int i = 0; i < BULLET_NUM + 1; i++)
 	{
 		bullets.push_back(std::make_shared<Bullet>());
 	}

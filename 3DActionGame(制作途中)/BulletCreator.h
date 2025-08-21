@@ -30,5 +30,6 @@ public:
 	const std::vector<std::shared_ptr<Bullet>>& GetBullets() { return bullets; }
 
 private:
+	static constexpr int BULLET_NUM = 200;	// —pˆÓ‚·‚é’e‚Ì”
 	std::vector<std::shared_ptr<Bullet>> bullets;
 };

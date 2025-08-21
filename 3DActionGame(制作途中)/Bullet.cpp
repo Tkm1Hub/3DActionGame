@@ -49,6 +49,7 @@ void Bullet::Draw()
 // ’e‚ÌˆÚ“®
 void Bullet::Move()
 {
+	moveVec = VNorm(moveVec);
 	moveVec = VScale(moveVec, speed);
 	pos = VAdd(pos, moveVec);
 }

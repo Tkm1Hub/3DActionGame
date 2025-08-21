@@ -16,6 +16,7 @@ class Enemy:public Character
 {
 public:
 	Enemy();
+    ~Enemy();
 
 	void Init() override;
     void Load() override{}
@@ -27,6 +28,7 @@ public:
 
     // 状態の取得
     const enum class State GetState() const override { return currentState; }
+    const VECTOR& GetHeadPos() const { return VGet(pos.x, pos.y + HIT_HEIGHT, pos.z); }
     const float GetJumpPower() const override { return currentJumpPower; }
 
     const float GetHitRadius() const override { return HIT_RADIUS; }
@@ -53,9 +55,6 @@ protected:
     static constexpr float HIT_RADIUS = 4.0f;       // 当たり判定半径
     static constexpr float HIT_HEIGHT = 10.0f;       // 当たり判定高さ
 
-    // 全方向に弾を発射する際、一度に発射する弾の数
-    static constexpr int BULLET_FIRE_ALL_DIRECTION_NUM = 6;
-
     // 変数
     VECTOR upMoveVec;           // 上下の移動ベクトル
     VECTOR leftMoveVec;         // 左右の移動ベクトル
@@ -64,9 +63,10 @@ protected:
     bool isFalling;             // 落下中かどうか
     bool isRunning;             // 走っているかどうか
     bool pushSpace = false;     // スペースキーが押されているか
+    bool isFireBarrage = false;    // 弾幕発射中か
     State currentState;
     AnimKind currentAnimState; 
-    Animation anim;
+    Animation* animation;
 
     void DisableRootFrameZMove();
     void Move(VECTOR& moveVec,StageCollision& collision);
