@@ -33,7 +33,8 @@ void BulletFire::FireAllDirection(const VECTOR& pos, int bulletNum,float angleHO
 	VECTOR bulletFireDirection = VGet(0.0f, 0.0f, 1.0f);	// 初期値は+Z方向
 	// 角度の基準値を代入
 	bulletFireDirection = RotateFireHorizontal(bulletFireDirection, angleHOffset);
-	bulletFireDirection = RotateFireVertical(bulletFireDirection, angleVOffset);
+	bulletFireDirection.y = sinf(angleVOffset);
+
 	// 弾の発射座標
 	VECTOR bulletFirePos = pos;
 	// 弾ごとの角度間隔
@@ -54,18 +55,14 @@ void BulletFire::FireAllDirection(const VECTOR& pos, int bulletNum,float angleHO
 void BulletFire::FireHorizontalBarrage(const VECTOR& firePos)
 {
 	// フレームカウントが0かつループ回数内のみ発射
-	if (BarrageFrameCount == 0 && barrageFireLoopCount <= BARRAGE_FIRE_LOOP_NUM)
+	if (barrageFrameCount % 10 == 0 && barrageFireLoopCount <= BARRAGE_FIRE_LOOP_NUM)
 	{
 		FireAllDirection(firePos, BULLET_FIRE_ALL_DIRECTION_NUM, barrageFireAngleH,0.0f);
 		barrageFireLoopCount++;
 		barrageFireAngleH += BARRAGE_ANGLE_H_OFFSET;
 	}
 
-	BarrageFrameCount++;
-	if (BarrageFrameCount >= 10)
-	{
-		BarrageFrameCount = 0;
-	}
+	barrageFrameCount++;
 
 	if (barrageFireLoopCount == BARRAGE_FIRE_LOOP_NUM + 1)
 	{
@@ -78,40 +75,32 @@ void BulletFire::FireHorizontalBarrage(const VECTOR& firePos)
 // ウェーブ状の弾幕を発射
 void BulletFire::FireWaveBarrage(const VECTOR& firePos)
 {
-	barrageFireAngleVOffset = BARRAGE_ANGLE_V_OFFSET;
 	// フレームカウントが0かつループ回数内のみ発射
-	if (BarrageFrameCount == 0 && barrageFireLoopCount <= BARRAGE_FIRE_LOOP_NUM)
+	if (barrageFrameCount % 10 == 0 && barrageFireLoopCount <= WAVE_BARRAGE_FIRE_LOOP_NUM)
 	{
+		// 角度を更新
+		barrageFireAngleV = (sinf(barrageFrameCount * WAVE_SPEED) + 1.0f) * 0.5f *  WAVE_MAX_ANGLE_V;
+		printf("%f \n", barrageFireAngleV);
+
+		// 弾を発射
 		FireAllDirection(firePos, BULLET_FIRE_ALL_DIRECTION_NUM, barrageFireAngleH,barrageFireAngleV);
+		
 		barrageFireLoopCount++;
-		barrageFireAngleH += BARRAGE_ANGLE_H_OFFSET;
-		barrageFireAngleV += barrageFireAngleVOffset;
+		barrageFireAngleH += WAVE_BARRAGE_ANGLE_H_OFFSET;
 	}
 
-	BarrageFrameCount++;
-	if (BarrageFrameCount >= 10)
-	{
-		BarrageFrameCount = 0;
-	}
+	// 1フレームごとにカウント
+	barrageFrameCount++;
 
-	barrageFireAngleV = std::clamp(barrageFireAngleV, 0.0f, 0.8f);
-
-	if (barrageFireAngleV <= -0.4f || barrageFireAngleV >= 0.0f)
-	{
-		barrageFireAngleVOffset *= -1;
-	}
-
-	if (barrageFireLoopCount == BARRAGE_FIRE_LOOP_NUM + 1)
+	if (barrageFireLoopCount == WAVE_BARRAGE_FIRE_LOOP_NUM + 1)
 	{
 		isActiveWaveBarrage = false;
 		barrageFireLoopCount = 0;
 		barrageFireAngleH = 0;
 		barrageFireAngleV = 0;
+		barrageFrameCount = 0;
 	}
-
 }
-
-
 
 // 水平方向の回転
 VECTOR BulletFire::RotateFireHorizontal(const VECTOR& dir, float angleH)
@@ -138,3 +127,4 @@ VECTOR BulletFire::RotateFireVertical(const VECTOR& dir, float angleV)
 		dir.y * sin + dir.z * cos
 	);
 }
+
