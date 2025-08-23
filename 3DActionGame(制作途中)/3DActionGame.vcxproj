@@ -243,6 +243,7 @@
     <ClInclude Include="Stage.h" />
     <ClInclude Include="StageCollision.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Sword.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Player.Json" />

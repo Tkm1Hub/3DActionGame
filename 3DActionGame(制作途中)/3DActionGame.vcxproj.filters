@@ -85,11 +85,14 @@
     <Filter Include="ソース ファイル\Skill">
       <UniqueIdentifier>{e694305d-12da-4da0-83b3-bd0d297af9d5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Skill\BulletFire">
-      <UniqueIdentifier>{ccdd490e-3502-461f-b20b-4ed1dcf79393}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\BulletCreator">
       <UniqueIdentifier>{89ce046a-d679-4047-97d5-b5e4b700bd54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\BulletCreator\BulletFire">
+      <UniqueIdentifier>{ccdd490e-3502-461f-b20b-4ed1dcf79393}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GameObject\Sword">
+      <UniqueIdentifier>{d63bf1b0-17fd-47e3-b0d7-84c94c0e0b16}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -166,7 +169,7 @@
       <Filter>ソース ファイル\BulletCreator</Filter>
     </ClCompile>
     <ClCompile Include="BulletFire.cpp">
-      <Filter>ソース ファイル\Skill\BulletFire</Filter>
+      <Filter>ソース ファイル\BulletCreator\BulletFire</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -246,7 +249,10 @@
       <Filter>ソース ファイル\BulletCreator</Filter>
     </ClInclude>
     <ClInclude Include="BulletFire.h">
-      <Filter>ソース ファイル\Skill\BulletFire</Filter>
+      <Filter>ソース ファイル\BulletCreator\BulletFire</Filter>
+    </ClInclude>
+    <ClInclude Include="Sword.h">
+      <Filter>ソース ファイル\GameObject\Sword</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
