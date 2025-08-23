@@ -1,15 +1,35 @@
 #include "stdafx.h"
 #include "ObjectManager.h"
+#include "Player.h"
+#include "enemy.h"
+#include "skyDome.h"
+#include "stage.h"
+#include "Sword.h"
 
 ObjectManager::ObjectManager(){}
 
-ObjectManager::~ObjectManager() { Clear(); }
+ObjectManager::~ObjectManager() {}
+
+void ObjectManager::Create()
+{
+	player = std::make_shared<GameObject>();
+	enemy = std::make_shared<GameObject>();
+	skyDome = std::make_shared<GameObject>();
+	stage = std::make_shared<GameObject>();
+	sword = std::make_shared<GameObject>();
+
+	AddObject(player);
+	AddObject(enemy);
+	AddObject(skyDome);
+	AddObject(stage);
+	AddObject(sword);
+}
 
 /// <summary>
 /// オブジェクトをリストに追加
 /// </summary>
 /// <param name="obj"></param>
-void ObjectManager::AddObject(GameObject* obj)
+void ObjectManager::AddObject(std::shared_ptr<GameObject> obj)
 {
 	objects.push_back(obj);
 }
@@ -19,7 +39,7 @@ void ObjectManager::AddObject(GameObject* obj)
 /// </summary>
 /// <param name="name"></param>
 /// <returns></returns>
-GameObject* ObjectManager::FindObject(const std::string& name)
+std::shared_ptr<GameObject> ObjectManager::FindObject(const std::string& name)
 {
 	for (auto obj : objects) {
 		if (obj->GetName() == name) {
@@ -71,14 +91,4 @@ void ObjectManager::DrawAll()
 	{
 		obj->Draw();
 	}
-}
-
-void ObjectManager::Clear()
-{
-	for (auto obj : objects)
-	{
-		delete obj;
-	}
-	objects.clear();
-
 }

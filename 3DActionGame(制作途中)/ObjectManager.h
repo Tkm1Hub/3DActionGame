@@ -8,16 +8,23 @@ public:
 	ObjectManager();
 	~ObjectManager();
 
-	void AddObject(GameObject* obj);
-	GameObject* FindObject(const std::string& name);
+	void Create();
+	void AddObject(std::shared_ptr<GameObject> obj);
+	std::shared_ptr<GameObject> FindObject(const std::string& name);
 	void InitAll();
 	void LoadAll();
 	void UpdateAll();
 	void DrawAll();
-	void Clear();
 
-	const std::vector<GameObject*>& GetObjects() const { return objects; }
+	const std::vector<std::shared_ptr<GameObject>>& GetObjects() const { return objects; }
 
 private:
-	std::vector<GameObject*> objects;
+	std::vector<std::shared_ptr<GameObject>> objects;
+
+	std::shared_ptr<GameObject> player = nullptr;
+	std::shared_ptr<GameObject> enemy = nullptr;
+	std::shared_ptr<GameObject> skyDome = nullptr;
+	std::shared_ptr<GameObject> stage = nullptr;
+	std::shared_ptr<GameObject> sword = nullptr;
+
 };
