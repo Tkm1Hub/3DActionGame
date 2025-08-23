@@ -44,8 +44,7 @@ float CollisionManager::DistancePointSegment(VECTOR A, VECTOR B, VECTOR P)
 	float t = ap_ab / ab2;			// Ë‰eŒW”
 
 	// ü•ª”ÍˆÍ‚ÉClamp(‚O`‚P)
-	if (t < 0.0f)t = 0.0f;
-	if (t > 1.0f)t = 1.0f;
+	std::clamp(t, 0.0f, 1.0f);
 
 	// Å’ZÚ“_ = A + t * AB
 	VECTOR closest = VAdd(A, VScale(AB, t));

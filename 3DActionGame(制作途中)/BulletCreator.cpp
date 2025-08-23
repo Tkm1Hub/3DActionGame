@@ -4,7 +4,7 @@
 
 void BulletCreator::Init()
 {
-	// 仮に100発用意
+	// 仮に200発用意
 	for (int i = 0; i < BULLET_NUM + 1; i++)
 	{
 		bullets.push_back(std::make_shared<Bullet>());
@@ -23,7 +23,7 @@ void BulletCreator::Update()
 	}
 }
 
-// 弾の生成（生成する座標 , 発射する方向）
+// 弾の発射（生成する座標 , 発射する方向）
 void BulletCreator::Create(const VECTOR& pos,const VECTOR& moveVec)
 {
 	for (auto& bullet : bullets)

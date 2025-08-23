@@ -171,6 +171,9 @@
     <ClCompile Include="BulletFire.cpp">
       <Filter>ソース ファイル\BulletCreator\BulletFire</Filter>
     </ClCompile>
+    <ClCompile Include="Sword.cpp">
+      <Filter>ソース ファイル\GameObject\Sword</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SceneManager.h">
