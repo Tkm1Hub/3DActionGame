@@ -1,17 +1,18 @@
 #pragma once
 #include "GameObject.h"
 
-class SkyDome:public GameObject
+class Player;
+class SkyDome:public IGameObject
 {
 public:
-	SkyDome();
+	SkyDome(const std::shared_ptr<Player>& playerPtr);
 	~SkyDome();
 
 	void Init() override;
 	void Load() override;
-	void Update() override {}
-	void Update(const VECTOR& player);
+	void Update() override;
 	void Draw() override;
 
 private:
+	std::shared_ptr<Player> player = nullptr;
 };

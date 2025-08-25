@@ -5,18 +5,20 @@
 #include "StageCollision.h"
 #include "Animation.h"
 
-Player::Player()
+Player::Player(const std::shared_ptr<CameraBase>& cameraPtr,std::shared_ptr<StageCollision>& stageCollPtr)
 {
 	name = "Player";
 	pos = VGet(0.0f, 0.0f, 0.0f);
 	scale = VGet(0.0f, 0.0f, 0.0f);
 	rot = VGet(0.0f, 0.0f, 0.0f);
 	modelHandle = -1;
+
+	camera = cameraPtr;
+	stageColl = stageCollPtr;
 }
 
 Player::~Player()
 {
-	delete animation;
 }
 
 void Player::Init()
@@ -32,7 +34,8 @@ void Player::Init()
 	currentAnimState = PlayerAnim::Idle;
 	currentPlayAnim = 1;
 	prevPlayAnim = 1;
-	animation = new Animation;
+
+	animation = std::make_shared<Animation>();
 }
 
 void Player::Load(const char* FilePath)
@@ -51,19 +54,19 @@ void Player::Load(const char* FilePath)
 	animation->Play(static_cast<int>(PlayerAnim::Idle));
 }
 
-void Player::Update(const Input&input,const CameraBase& camera,StageCollision& collision)
+void Player::Update()
 {
 	// ルートフレームのＺ軸方向の移動パラメータを無効にする
 	DisableRootFrameZMove();
 
 	// パッド入力によって移動パラメータを設定する
-	UpdateMoveParameterWithPad(input, camera);
+	UpdateMoveParameterWithPad(camera->GetForward());
 	// プレイヤーの状態を更新
 	State prevState = currentState;
 	UpdateState();
 
 	// モデルの位置を更新
-	Move(moveVec, collision, input);
+	Move(moveVec);
 	
 	// モデルの回転
 	UpdateAngle();
@@ -79,13 +82,13 @@ void Player::Update(const Input&input,const CameraBase& camera,StageCollision& c
 
 }
 
-void Player::UpdateMoveParameterWithPad(const Input& input, const CameraBase& camera)
+void Player::UpdateMoveParameterWithPad(const VECTOR& cameraForward)
 {
 	// 左スティックの数値を取得
-	float stickX = input.GetLeftStickX();
-	float stickY = input.GetLeftStickY();
+	float stickX = Input::GetInput().GetLeftStickX();
+	float stickY = Input::GetInput().GetLeftStickY();
 
-	bool isMoveStick = input.GetIsMoveLStick();
+	bool isMoveStick = Input::GetInput().GetIsMoveLStick();
 
 	// このフレームでの移動ベクトルを初期化
 	moveVec = VGet(0.0f, 0.0f, 0.0f);
@@ -97,7 +100,7 @@ void Player::UpdateMoveParameterWithPad(const Input& input, const CameraBase& ca
 	if (isMoveStick)
 	{
 		// カメラの前方向ベクトルを取得
-		VECTOR camForward = camera.GetForward();
+		VECTOR camForward = cameraForward;
 		camForward.y = 0.0f;
 		camForward = VNorm(camForward);
 
@@ -112,7 +115,7 @@ void Player::UpdateMoveParameterWithPad(const Input& input, const CameraBase& ca
 	}
 
 	// Aボタンでジャンプ
-	if (currentState != State::Jump && (input.GetNowFrameNewInput() & PAD_INPUT_A))
+	if (currentState != State::Jump && (Input::GetInput().GetNowFrameNewInput() & PAD_INPUT_A))
 	{
 		// Ｙ軸方向の速度をセット
 		currentJumpPower = JUMP_POWER;
@@ -121,7 +124,7 @@ void Player::UpdateMoveParameterWithPad(const Input& input, const CameraBase& ca
 	}
 
 	// Bボタンで走る
-	if (currentState != State::Run && (input.GetNowFrameNewInput() & PAD_INPUT_B))
+	if (currentState != State::Run && (Input::GetInput().GetNowFrameNewInput() & PAD_INPUT_B))
 	{
 		// 速度を加算
 		//currentMoveSpeed = RUN_SPEED;
@@ -139,7 +142,7 @@ void Player::UpdateMoveParameterWithPad(const Input& input, const CameraBase& ca
 /// <summary>
 /// 移動処理
 /// </summary>
-void Player::Move(const VECTOR& MoveVector, StageCollision& collision, const Input& input)
+void Player::Move(const VECTOR& MoveVector)
 {
 
 	// HACK: 移動距離が0.01未満で微妙に移動していた場合はじんわり移動してバグる
@@ -193,7 +196,7 @@ void Player::Move(const VECTOR& MoveVector, StageCollision& collision, const Inp
 	moveVec.y = currentJumpPower;
 
 	// 当たり判定をして、新しい座標を保存する
-	pos = collision.CheckCollision(*this, MoveVector);
+	pos = stageColl->CheckCollision(*this, MoveVector);
 
 	//Y座標が-100以下になったら座標を初期化する
 	if (pos.y < -100.0f || pos.y>500)

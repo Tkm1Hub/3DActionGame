@@ -12,11 +12,11 @@ ObjectManager::~ObjectManager() {}
 
 void ObjectManager::Create()
 {
-	player = std::make_shared<GameObject>();
-	enemy = std::make_shared<GameObject>();
-	skyDome = std::make_shared<GameObject>();
-	stage = std::make_shared<GameObject>();
-	sword = std::make_shared<GameObject>();
+	player = std::make_shared<Player>();
+	enemy = std::make_shared<Enemy>();
+	skyDome = std::make_shared<SkyDome>();
+	stage = std::make_shared<Stage>();
+	sword = std::make_shared<Sword>();
 
 	AddObject(player);
 	AddObject(enemy);
@@ -29,7 +29,7 @@ void ObjectManager::Create()
 /// オブジェクトをリストに追加
 /// </summary>
 /// <param name="obj"></param>
-void ObjectManager::AddObject(std::shared_ptr<GameObject> obj)
+void ObjectManager::AddObject(std::shared_ptr<IGameObject> obj)
 {
 	objects.push_back(obj);
 }
@@ -39,7 +39,7 @@ void ObjectManager::AddObject(std::shared_ptr<GameObject> obj)
 /// </summary>
 /// <param name="name"></param>
 /// <returns></returns>
-std::shared_ptr<GameObject> ObjectManager::FindObject(const std::string& name)
+std::shared_ptr<IGameObject> ObjectManager::FindObject(const std::string& name)
 {
 	for (auto obj : objects) {
 		if (obj->GetName() == name) {

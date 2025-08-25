@@ -4,12 +4,10 @@ class Character;
 class BulletFire
 {
 public:
-	BulletFire(){}
+	BulletFire(const std::shared_ptr<Character>& characterPtr);
 
 	void Init();
 	void Update();
-
-	void SetCharacter(Character* characterPtr);
 
 	// ‘S•ûŒü‚É’e‚ğ”­Ë
 	void FireAllDirection(const VECTOR& pos,int bulletNum, float angleHOffset, float angleVOffset);
@@ -59,6 +57,5 @@ private:
 
 	VECTOR RotateFireHorizontal(const VECTOR& dir,float angleH);	// …•½•ûŒü‚É‰ñ“]
 	VECTOR RotateFireVertical(const VECTOR& dir, float angleV);	// ‚’¼•ûŒü‚É‰ñ“]
-
-	Character* character = nullptr;
+	std::shared_ptr<Character> character = nullptr;
 };

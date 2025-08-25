@@ -2,9 +2,24 @@
 
 class Input
 {
+private:
+    //コンストラクタを非公開にする
+    Input() {}
+
+    // コピーコンストラクタと代入演算子を削除
+    Input(const Input&) = delete;
+    Input& operator=(const Input&) = delete;
+
+    //プライベートデストラクタ
+    ~Input(){}
+
 public:
-    Input();
-    ~Input();
+    // インスタンスを取得するためのメソッド
+    static Input& GetInput()
+    {
+        static Input instance;      // 静的変数としてインスタンスを定義
+        return instance;
+    }
 
     //キーの種類
     enum KeyKinds

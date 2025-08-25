@@ -12,7 +12,6 @@
 #include "CollisionManager.h"
 #include "Shadow.h"
 #include "Debug.h"
-//#include "Bullet.h"
 #include "BulletCreator.h"
 
 GameScene::GameScene(SceneManager& manager)
@@ -23,7 +22,6 @@ GameScene::~GameScene()
 {
     delete objMgr;
     delete debug;
-    delete input;
     delete cameraMgr;
     delete shadow;
 
@@ -35,7 +33,6 @@ void GameScene::Init()
     // オブジェクトのインスタンス化
     objMgr = new ObjectManager;
     debug = new Debug;
-    input = new Input;
     cameraMgr = new CameraManager;
     shadow = new Shadow;
 
@@ -81,9 +78,6 @@ void GameScene::Update()
     input->Update();
     cameraMgr->Update(*input, *player);
 
-    player->Update(*input, *cameraMgr->GetCurrentCamera(), *stageColl);
-    enemy->Update(*stageColl);
-    skyDome->Update(player->GetPosition());
     objMgr->UpdateAll();
     //bullet->Update();
     BulletCreator::GetBulletCreator().Update();

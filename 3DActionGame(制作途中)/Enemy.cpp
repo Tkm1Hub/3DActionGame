@@ -4,19 +4,19 @@
 #include "Animation.h"
 #include "BulletFire.h"
 
-Enemy::Enemy()
+Enemy::Enemy(std::shared_ptr<StageCollision>& stageCollPtr)
 {
 	name = "Enemy";
 	pos = VGet(0.0f, 0.0f, 0.0f);
 	scale = VGet(0.0f, 0.0f, 0.0f);
 	rot = VGet(0.0f, 0.0f, 0.0f);
 	modelHandle = -1;
+
+	stageColl = stageCollPtr;
 }
 
 Enemy::~Enemy()
 {
-	delete animation;
-	delete bulletFire;
 }
 
 void Enemy::Init()
@@ -27,10 +27,8 @@ void Enemy::Init()
 	isJumping = false;
 	currentJumpPower = 0.0f;
 
-	animation = new Animation;
-	//bulletFire = std::make_shared<BulletFire>(this);
-	bulletFire = new BulletFire();
-	bulletFire->SetCharacter(this);
+	animation = std::make_shared<Animation>();
+	bulletFire = std::make_shared<BulletFire>(this);
 }
 
 //void Enemy::Load()
@@ -50,7 +48,7 @@ void Enemy::Load(const char* FilePath)
 	MV1SetPosition(modelHandle, pos);
 }
 
-void Enemy::Update(StageCollision& collision)
+void Enemy::Update()
 {
 	// ルートフレームのＺ軸方向の移動パラメータを無効にする
 	DisableRootFrameZMove();
@@ -94,7 +92,7 @@ void Enemy::Update(StageCollision& collision)
 	bulletFire->Update();
 
 	// ステージを考慮して移動
-	Move(moveVec, collision);
+	Move(moveVec);
 
 	// アニメの更新
 
@@ -108,7 +106,7 @@ void Enemy::Draw()
 	MV1DrawModel(modelHandle);
 }
 
-void Enemy::Move(VECTOR& moveVec, StageCollision& collision)
+void Enemy::Move(VECTOR& moveVec)
 {
 	// HACK: 移動距離が0.01未満で微妙に移動していた場合はじんわり移動してバグる
 // x軸かy軸方向に 0.01f 以上移動した場合は「移動した」フラグを１にする
@@ -142,7 +140,7 @@ void Enemy::Move(VECTOR& moveVec, StageCollision& collision)
 
 
 	// 当たり判定をして、新しい座標を保存する
-	pos = collision.CheckCollision(*this, moveVec);
+	pos = stageColl->CheckCollision(*this, moveVec);
 
 	//Y座標が-100以下になったら座標を初期化する
 	if (pos.y < -100.0f || pos.y>500)

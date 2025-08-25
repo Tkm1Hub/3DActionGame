@@ -29,8 +29,9 @@ private:
 	static constexpr float DISTANCE_OFFSET = 40.0f;		// プレイヤーからの距離
 	static constexpr float SMOOTHING = 0.1f;			// カメラのスムージング
 
-	Input* input;
 	Player* player;
+
+	std::shared_ptr<Player>
 
 	void CalcCameraAngle(const Input& input);		// カメラのアングルを計算
 	float CalcAngleSpeed(const Input& input);		// カメラの旋回速度を計算

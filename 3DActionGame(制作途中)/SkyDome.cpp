@@ -1,13 +1,16 @@
 #include "stdafx.h"
 #include "SkyDome.h"
+#include "Player.h"
 
-SkyDome::SkyDome()
+SkyDome::SkyDome(const std::shared_ptr<Player>& playerPtr)
 {
 	name = "SkyDome";
 	pos = VGet(0.0f, 0.0f, 0.0f);
 	rot = VGet(0.0f, 0.0f, 0.0f);
 	scale = VGet(0.0f, 0.0f, 0.0f);
 	modelHandle = -1;
+
+	player = playerPtr;
 }
 
 SkyDome::~SkyDome(){}
@@ -25,10 +28,10 @@ void SkyDome::Load()
 	MV1SetScale(modelHandle, scale);
 }
 
-void SkyDome::Update(const VECTOR& playerPos)
+void SkyDome::Update()
 {
 	// スカイドームの中心をプレイヤーの座標に設定
-	pos = playerPos;
+	pos = player->GetPosition();
 	MV1SetPosition(modelHandle,pos);
 }
 

@@ -1,9 +1,6 @@
 #pragma once
 #include "Character.h"
-#include "StageCollision.h"
-#include "Animation.h"
 
-class Input;
 class CameraBase;
 class StageCollision;
 class Animation;
@@ -25,13 +22,12 @@ class Player:public Character
 {
 public:
 
-    Player();
+    Player(const std::shared_ptr<CameraBase>& cameraPtr,std::shared_ptr<StageCollision>& stageCollPtr);
     ~Player();
 
     void Init() override;
     void Load(const char* FiePath) override;
-    void Update() override {};
-    void Update( const Input& input, const CameraBase& camera, StageCollision& collision);
+    void Update() override;
     void Draw() override;
 
     void OnHitRoof() override;       // “Vˆä‚É“–‚½‚Á‚½Žž
@@ -89,14 +85,17 @@ private:
 
     State currentState = State::Stand;
     PlayerAnim currentAnimState = PlayerAnim::Idle;
-    Animation* animation = nullptr;
+    std::shared_ptr<Animation> animation = nullptr;
+
+    std::shared_ptr<CameraBase> camera = nullptr;
+    std::shared_ptr<StageCollision> stageColl = nullptr;
 
     void DisableRootFrameZMove();
-    void UpdateMoveParameterWithPad(const Input& input, const CameraBase& camera);
+    void UpdateMoveParameterWithPad(const VECTOR& cameraForward);
     void CulcMoveSpeed();
     void ChangeState(int newState) override;
     void UpdateState();
-    void Move(const VECTOR& MoveVector, StageCollision& collision, const Input& input);
+    void Move(const VECTOR& MoveVector);
     void UpdateAnimation();
     void PlayAnim(PlayerAnim animkind);
     void ChangeAnimState(int animKind) override;

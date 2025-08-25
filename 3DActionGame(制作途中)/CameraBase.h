@@ -1,7 +1,7 @@
 #pragma once
 #include "GameObject.h"
 
-class CameraBase: public GameObject
+class CameraBase: public IGameObject
 {
 public:
 	void Init() override;

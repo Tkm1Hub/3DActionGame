@@ -2,7 +2,7 @@
 #include "DxLib.h"
 #include <iostream>
 
-class GameObject
+class IGameObject
 {
 public:
 	virtual void Init() = 0;

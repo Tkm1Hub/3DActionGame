@@ -9,22 +9,22 @@ public:
 	~ObjectManager();
 
 	void Create();
-	void AddObject(std::shared_ptr<GameObject> obj);
-	std::shared_ptr<GameObject> FindObject(const std::string& name);
+	void AddObject(std::shared_ptr<IGameObject> obj);
+	std::shared_ptr<IGameObject> FindObject(const std::string& name);
 	void InitAll();
 	void LoadAll();
 	void UpdateAll();
 	void DrawAll();
 
-	const std::vector<std::shared_ptr<GameObject>>& GetObjects() const { return objects; }
+	const std::vector<std::shared_ptr<IGameObject>>& GetObjects() const { return objects; }
 
 private:
-	std::vector<std::shared_ptr<GameObject>> objects;
+	std::vector<std::shared_ptr<IGameObject>> objects;
 
-	std::shared_ptr<GameObject> player = nullptr;
-	std::shared_ptr<GameObject> enemy = nullptr;
-	std::shared_ptr<GameObject> skyDome = nullptr;
-	std::shared_ptr<GameObject> stage = nullptr;
-	std::shared_ptr<GameObject> sword = nullptr;
+	std::shared_ptr<IGameObject> player = nullptr;
+	std::shared_ptr<IGameObject> enemy = nullptr;
+	std::shared_ptr<IGameObject> skyDome = nullptr;
+	std::shared_ptr<IGameObject> stage = nullptr;
+	std::shared_ptr<IGameObject> sword = nullptr;
 
 };

@@ -1,7 +1,5 @@
 #pragma once
 #include "Character.h"
-#include "StageCollision.h"
-#include "Animation.h"
 
 class Animation;
 class StageCollision;
@@ -15,15 +13,14 @@ enum class AnimKind :int
 class Enemy:public Character 
 {
 public:
-	Enemy();
+	Enemy(std::shared_ptr<StageCollision>& stageCollPtr);
     ~Enemy();
 
 	void Init() override;
     void Load() override{}
     void Load(const char* FilePath);
-	void Update() override{}
-    void Update(StageCollision& collision);
-	void Draw() override;
+    void Update() override;
+    void Draw() override;
 
 
     // èÛë‘ÇÃéÊìæ
@@ -67,15 +64,16 @@ protected:
     bool isBarrageActive = false;    // íeñãî≠éÀíÜÇ©
     State currentState;
     AnimKind currentAnimState; 
-    Animation* animation;
+    std::shared_ptr<Animation> animation = nullptr;
+
+    std::shared_ptr<StageCollision> stageColl = nullptr;
 
     void DisableRootFrameZMove();
-    void Move(VECTOR& moveVec,StageCollision& collision);
+    void Move(VECTOR& moveVec);
     void UpdateState();
     void ChangeState(int newState) override {};
     void ChangeAnimState(int animKind) override {};
 
     //virtual void Attack() = 0;
-    //std::shared_ptr<BulletFire>bulletFire = nullptr;
-    BulletFire* bulletFire = nullptr;
+    std::shared_ptr<BulletFire>bulletFire = nullptr;
 };

@@ -3,12 +3,12 @@
 #include "BulletCreator.h"
 #include "Enemy.h"
 
-void BulletFire::Init(){}
-
-void BulletFire::SetCharacter(Character* characterPtr)
+BulletFire::BulletFire(const std::shared_ptr<Character>& characterPtr)
 {
 	character = characterPtr;
 }
+
+void BulletFire::Init(){}
 
 void BulletFire::Update()
 {

@@ -10,7 +10,7 @@ enum class State :int
 };
 
 
-class Character:public GameObject
+class Character:public IGameObject
 {
 public:
 	// ƒ‚ƒfƒ‹‚Ìƒ[ƒh
