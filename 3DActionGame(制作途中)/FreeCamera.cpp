@@ -3,7 +3,7 @@
 #include "Player.h"
 #include "Input.h"
 
-FreeCamera::FreeCamera()
+FreeCamera::FreeCamera(const std::shared_ptr<Player>& playerPtr)
 {
 	name = "FreeCamera";
 	pos = VGet(0.0f, 0.0f, 0.0f);
@@ -13,6 +13,8 @@ FreeCamera::FreeCamera()
 	angleV = 0.0f;
 	currentAngleSpeed = 0.0f;
 	isMoveAngle = false;
+
+	player = playerPtr;
 }
 
 FreeCamera::~FreeCamera(){}
@@ -27,40 +29,29 @@ void FreeCamera::Init()
 	SetCameraNearFar(0.1f, 1000.0f);
 }
 
-void FreeCamera::Update(const Input& input,const Player& player)
+void FreeCamera::Update()
 {
 	// カメラの旋回速度を計算
-	currentAngleSpeed = CalcAngleSpeed(input);
+	currentAngleSpeed = CalcAngleSpeed();
 
-	CalcCameraAngle(input);
+	CalcCameraAngle();
 
 	//カメラの注視点はプレイヤー座標から規定値分高い座標
-	nextTarget = VAdd(player.GetPosition(), VGet(0.0f, LOOK_OFFSET_Y, 0.0f));
+	nextTarget = VAdd(player->GetPosition(), VGet(0.0f, LOOK_OFFSET_Y, 0.0f));
 
 	// カメラの座標を補正する
 	FixCameraPosition();
-
-	// カメラをスムーズに移動
-	//moveSmoothing();
 
 	// カメラの方向を保存
 	// カメラの方向ベクトルはカメラ座標から注視点座標を引いて正規化
 	forward = VSub(nextPosition, currentTarget);
 	forward = VNorm(forward);
-
-	// カメラの情報をライブラリのカメラに反映させる
-	//SetCameraPositionAndTarget_UpVecY(currentPosition, currentTarget);
 }
 
-void FreeCamera::Draw()
-{
-
-}
-
-void FreeCamera::CalcCameraAngle(const Input& input)
+void FreeCamera::CalcCameraAngle()
 {
 	// X軸
-	if (0.0f > input.GetRightStickX())
+	if (0.0f > Input::GetInput().GetRightStickX())
 	{
 		angleH -= currentAngleSpeed;
 		// １８０度以上になったら角度値が大きくなりすぎないように３６０度を足す
@@ -69,7 +60,7 @@ void FreeCamera::CalcCameraAngle(const Input& input)
 			angleH += DX_TWO_PI_F;
 		}
 	}
-	else if(input.GetRightStickX() > 0.0f)
+	else if(Input::GetInput().GetRightStickX() > 0.0f)
 	{
 		angleH += currentAngleSpeed;
 		// －１８０度以下になったら角度値が大きくなりすぎないように３６０度を引く
@@ -80,7 +71,7 @@ void FreeCamera::CalcCameraAngle(const Input& input)
 	}
 
 	// Y軸
-	if (0.0f > input.GetRightStickY())
+	if (0.0f > Input::GetInput().GetRightStickY())
 	{
 		angleV += currentAngleSpeed;
 		// ある一定角度以下にはならないようにする
@@ -89,7 +80,7 @@ void FreeCamera::CalcCameraAngle(const Input& input)
 			angleV = DX_PI_F * 0.5f - 0.6f;
 		}
 	}
-	else if (input.GetRightStickY() > 0.0f)
+	else if (Input::GetInput().GetRightStickY() > 0.0f)
 	{
 		angleV -= currentAngleSpeed;
 		// ある一定角度以上にはならないようにする
@@ -100,16 +91,16 @@ void FreeCamera::CalcCameraAngle(const Input& input)
 	}
 }
 
-float FreeCamera::CalcAngleSpeed(const Input&input)
+float FreeCamera::CalcAngleSpeed()
 {
-	float stickAngle = input.GetRStickAngle();
+	float stickAngle = Input::GetInput().GetRStickAngle();
 	float stickPower = abs(stickAngle) / 1000.0f;
 
 	// 傾きに応じた最大速度を計算
 	float maxSpeed = MAX_ANGLE_SPEED * stickPower;
 
 	// 加速 or 減速
-	if (input.GetIsMoveRStick())
+	if (Input::GetInput().GetIsMoveRStick())
 	{
 		currentAngleSpeed += ACCEL; // 加速量
 		currentAngleSpeed = min(currentAngleSpeed, maxSpeed); // maxSpeedで制限
@@ -144,7 +135,6 @@ void FreeCamera::FixCameraPosition()
 	nextPosition = VAdd(VTransform(VTransform(VGet(-cameraPlayerLength, 0.0f, 0.0f), rotZ), rotY), nextTarget);
 
 }
-
 
 void FreeCamera::moveSmoothing()
 {

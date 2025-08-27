@@ -1,7 +1,6 @@
 #pragma once
 #include "GameObject.h"
 
-
 class ObjectManager
 {
 public:
@@ -26,5 +25,7 @@ private:
 	std::shared_ptr<IGameObject> skyDome = nullptr;
 	std::shared_ptr<IGameObject> stage = nullptr;
 	std::shared_ptr<IGameObject> sword = nullptr;
-
+	std::shared_ptr<IGameObject> camera = nullptr;
+	std::shared_ptr<IGameObject> freeCamera = nullptr;
+	std::shared_ptr<IGameObject> focusCamera = nullptr;
 };

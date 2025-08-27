@@ -5,7 +5,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "EnemyManager.h"
-#include "CameraManager.h"
+#include "CameraSelector.h"
 #include "SkyDome.h"
 #include "Stage.h"
 #include "StageCollision.h"
@@ -20,63 +20,42 @@ GameScene::GameScene(SceneManager& manager)
 
 GameScene::~GameScene()
 {
-    delete objMgr;
     delete debug;
-    delete cameraMgr;
     delete shadow;
-
-    delete enemy;
 }
 
 void GameScene::Init()
 {
     // オブジェクトのインスタンス化
-    objMgr = new ObjectManager;
     debug = new Debug;
-    cameraMgr = new CameraManager;
     shadow = new Shadow;
 
-    //bullet = std::make_shared<Bullet>();
+    objectMgr = std::make_shared<ObjectManager>();
+    cameraSelector = std::make_shared<CameraSelector>();
+
     collisionManager = std::make_shared<CollisionManager>();
 
-    //オブジェクトをリストに追加
-    //objMgr->AddObject(new FreeCamera);
-    objMgr->AddObject(new Player);
-    objMgr->AddObject(new Enemy);
-    objMgr->AddObject(new Stage);
-    objMgr->AddObject(new SkyDome);
-
-    //キャスト
-    player = dynamic_cast<Player*>(objMgr->FindObject("Player"));
-    enemy = dynamic_cast<Enemy*>(objMgr->FindObject("Enemy"));
-    stage = dynamic_cast<Stage*>(objMgr->FindObject("Stage"));
-    skyDome = dynamic_cast<SkyDome*>(objMgr->FindObject("SkyDome"));
+    // オブジェクトの生成
+    objectMgr->Create();
 
     // オブジェクトの初期化
-    objMgr->InitAll();
-    cameraMgr->Init();
+    objectMgr->InitAll();
+    cameraSelector->Init();
     shadow->Init();
     //bullet->Init();
     BulletCreator::GetBulletCreator().Init();
 
-    // オブジェクトのロード処理
-    objMgr->LoadAll();
-    player->Load("modelPath");
-    enemy->Load("data/model/character/robot.mv1");
     // ステージのモデルハンドルを当たり判定に渡す
     stageColl = new StageCollision(stage->GetModelHandle());
 
     // デバッグクラスにオブジェクトを渡す
     debug->SetObjectManager(objMgr);
-    debug->SetInput(input);
-    debug->SetCamera(cameraMgr->GetCurrentCamera());
 }
 
 void GameScene::Update()
 {
     // 各オブジェクトの更新処理
-    input->Update();
-    cameraMgr->Update(*input, *player);
+    cameraSelector->Update();
 
     objMgr->UpdateAll();
     //bullet->Update();
@@ -93,7 +72,7 @@ void GameScene::Draw() const
     ShadowMap_DrawSetup(shadow->GetShadowMapHandle());
 
     // SkyDome以外を描画
-    for (auto obj : objMgr->GetObjects()) {
+    for (auto obj : objectMgr->GetObjects()) {
         if (obj->GetName() != "SkyDome") {
             obj->Draw();
         }
@@ -106,8 +85,7 @@ void GameScene::Draw() const
     SetUseShadowMap(0, shadow->GetShadowMapHandle());
 
     // オブジェクトの描画
-    objMgr->DrawAll();
-    //bullet->Draw();
+    objectMgr->DrawAll();
     BulletCreator::GetBulletCreator().Draw();
 
     // 描画に使用するシャドウマップの設定を解除

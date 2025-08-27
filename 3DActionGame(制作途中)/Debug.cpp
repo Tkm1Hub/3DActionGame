@@ -6,20 +6,10 @@
 #include "Player.h"
 #include "Enemy.h"
 
-void Debug::SetObjectManager(ObjectManager* mgr)
+void Debug::SetObjectManager(const std::shared_ptr<ObjectManager>& objectMgrPtr)
 {
-	objMgr = mgr;
+	objMgr = objectMgrPtr;
 }
-
-void Debug::SetInput(Input* inputPtr)
-{
-	input = inputPtr;
-}
-
-void Debug::SetCamera(CameraBase* cameraBase)
-	{
-		camera = cameraBase;
-	}
 
 void Debug::Draw()
 {
@@ -38,7 +28,7 @@ void Debug::Draw()
 
 		if (name == "Player")
 		{
-			Player* player = dynamic_cast<Player*>(obj);
+			std::shared_ptr<Player> player = dynamic_cast<Player>(obj);
 			if (player)
 			{
 				printfDx("AnimBlendRate : %f\n", player->GetBrendRate());
@@ -65,17 +55,16 @@ void Debug::Draw()
 		}
 	}
 
-	printfDx("camera : Pos[%f, %f, %f]\n", camera->GetPosition().x, camera->GetPosition().y, camera->GetPosition().z);
 
-	printfDx("RStickX : %f \n", input->GetRightStickX());
-	printfDx("RStickY : %f \n", input->GetRightStickY());
-	printfDx("LStickX : %f \n", input->GetLeftStickX());
-	printfDx("LStickY : %f \n", input->GetLeftStickY());
+	printfDx("RStickX : %f \n", Input::GetInput().GetRightStickX());
+	printfDx("RStickY : %f \n", Input::GetInput().GetRightStickY());
+	printfDx("LStickX : %f \n", Input::GetInput().GetLeftStickX());
+	printfDx("LStickY : %f \n", Input::GetInput().GetLeftStickY());
 
 }
 
 
-void Debug::DrawCapsule(const Character* character)
+void Debug::DrawCapsule(const std::shared_ptr<Character>& character)
 {
 	DrawCapsule3D(VGet(character->GetPosition().x, character->GetPosition().y + character->GetHitRadius(), character->GetPosition().z)
 		, VGet(character->GetPosition().x, character->GetPosition().y + character->GetHitHeight(), character->GetPosition().z)

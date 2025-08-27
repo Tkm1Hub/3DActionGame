@@ -8,15 +8,11 @@ class Character;
 class Debug
 {
 public:
-	void SetObjectManager(ObjectManager* mgr);
-	void SetInput(Input* inputPtr);
-	void SetCamera(CameraBase* camera);
+	void SetObjectManager(const std::shared_ptr<ObjectManager>& objectMgrPtr);
 	void Draw();
 
 private:
-	ObjectManager* objMgr = nullptr;
-	Input* input = nullptr;
-	CameraBase* camera = nullptr;
+	std::shared_ptr<ObjectManager>objMgr = nullptr;
 
-	void DrawCapsule(const Character* character);
+	void DrawCapsule(const std::shared_ptr<Character>& character);
 };

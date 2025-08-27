@@ -61,9 +61,6 @@
     <Filter Include="ソース ファイル\Animation">
       <UniqueIdentifier>{25fbb970-ca5f-4681-a1ed-6e1e2cd23b3b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\CameraManager">
-      <UniqueIdentifier>{82ddaf8f-3d55-4e3a-97c0-3bbb234bbea8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\GameObject\Camera\CameraBase">
       <UniqueIdentifier>{11f672ae-30b8-4f1d-89ec-e6f9180b909d}</UniqueIdentifier>
     </Filter>
@@ -94,6 +91,18 @@
     <Filter Include="ソース ファイル\GameObject\Sword">
       <UniqueIdentifier>{d63bf1b0-17fd-47e3-b0d7-84c94c0e0b16}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\CameraSelector">
+      <UniqueIdentifier>{82ddaf8f-3d55-4e3a-97c0-3bbb234bbea8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GameObject\Camera\FocusCamera">
+      <UniqueIdentifier>{56038435-465d-40e6-ac6c-c213c5b438f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GameObject\Camera\FreeCamera">
+      <UniqueIdentifier>{60839579-2e1c-43e4-b02e-9fb1401ba1c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GameObject\Camera\MainCamera">
+      <UniqueIdentifier>{5b6da69c-a288-410a-9f81-9e81723f0799}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -113,9 +122,6 @@
     </ClCompile>
     <ClCompile Include="Stage.cpp">
       <Filter>ソース ファイル\GameObject\Stage</Filter>
-    </ClCompile>
-    <ClCompile Include="FreeCamera.cpp">
-      <Filter>ソース ファイル\GameObject\Camera</Filter>
     </ClCompile>
     <ClCompile Include="ObjectManager.cpp">
       <Filter>ソース ファイル\ObjectManager</Filter>
@@ -144,14 +150,8 @@
     <ClCompile Include="Animation.cpp">
       <Filter>ソース ファイル\Animation</Filter>
     </ClCompile>
-    <ClCompile Include="FocusCamera.cpp">
-      <Filter>ソース ファイル\GameObject\Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="CameraManager.cpp">
-      <Filter>ソース ファイル\CameraManager</Filter>
-    </ClCompile>
-    <ClCompile Include="CameraBase.cpp">
-      <Filter>ソース ファイル\GameObject\Camera\CameraBase</Filter>
+    <ClCompile Include="CameraSelector.cpp">
+      <Filter>ソース ファイル\CameraSelector</Filter>
     </ClCompile>
     <ClCompile Include="EnemyManager.cpp">
       <Filter>ソース ファイル\EnemyManager</Filter>
@@ -173,6 +173,15 @@
     </ClCompile>
     <ClCompile Include="Sword.cpp">
       <Filter>ソース ファイル\GameObject\Sword</Filter>
+    </ClCompile>
+    <ClCompile Include="FocusCamera.cpp">
+      <Filter>ソース ファイル\GameObject\Camera\FocusCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeCamera.cpp">
+      <Filter>ソース ファイル\GameObject\Camera\FreeCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="MainCamera.cpp">
+      <Filter>ソース ファイル\GameObject\Camera\MainCamera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -196,9 +205,6 @@
     </ClInclude>
     <ClInclude Include="Stage.h">
       <Filter>ソース ファイル\GameObject\Stage</Filter>
-    </ClInclude>
-    <ClInclude Include="FreeCamera.h">
-      <Filter>ソース ファイル\GameObject\Camera</Filter>
     </ClInclude>
     <ClInclude Include="ObjectManager.h">
       <Filter>ソース ファイル\ObjectManager</Filter>
@@ -227,11 +233,8 @@
     <ClInclude Include="Animation.h">
       <Filter>ソース ファイル\Animation</Filter>
     </ClInclude>
-    <ClInclude Include="FocusCamera.h">
-      <Filter>ソース ファイル\GameObject\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="CameraManager.h">
-      <Filter>ソース ファイル\CameraManager</Filter>
+    <ClInclude Include="CameraSelector.h">
+      <Filter>ソース ファイル\CameraSelector</Filter>
     </ClInclude>
     <ClInclude Include="CameraBase.h">
       <Filter>ソース ファイル\GameObject\Camera\CameraBase</Filter>
@@ -256,6 +259,15 @@
     </ClInclude>
     <ClInclude Include="Sword.h">
       <Filter>ソース ファイル\GameObject\Sword</Filter>
+    </ClInclude>
+    <ClInclude Include="FocusCamera.h">
+      <Filter>ソース ファイル\GameObject\Camera\FocusCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="FreeCamera.h">
+      <Filter>ソース ファイル\GameObject\Camera\FreeCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="MainCamera.h">
+      <Filter>ソース ファイル\GameObject\Camera\MainCamera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -3,16 +3,10 @@
 
 class ObjectManager;
 class Debug;
-class Input;
-class Player;
-class Enemy;
-class CameraManager;
-class SkyDome;
-class Stage;
+class CameraSelector;
 class StageCollision;
 class CollisionManager;
 class Shadow;
-//class Bullet;
 
 class GameScene : public Scene
 {
@@ -35,16 +29,11 @@ public:
 private:
 
     // オブジェクトのポインタ
-    ObjectManager* objMgr = nullptr;
-    Input* input = nullptr;
+    std::shared_ptr<ObjectManager> objectMgr = nullptr;
     Debug* debug = nullptr;
-    Player* player = nullptr;
-    Enemy* enemy = nullptr;
-    CameraManager* cameraMgr = nullptr;
-    Stage* stage = nullptr;
+    std::shared_ptr<CameraSelector>cameraSelector = nullptr;
     StageCollision* stageColl = nullptr;
     Shadow* shadow = nullptr;
-    SkyDome* skyDome = nullptr;
 
     //std::shared_ptr<Bullet>bullet = nullptr;
     std::shared_ptr<CollisionManager>collisionManager = nullptr;

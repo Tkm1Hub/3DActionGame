@@ -1,19 +1,14 @@
 #pragma once
 #include "CameraBase.h"
 
-class Input;
-class Player;
-
 class FreeCamera : public CameraBase
 {
 public:
-	FreeCamera();
+	FreeCamera(const std::shared_ptr<Player>& playerPtr);
 	~FreeCamera();
 
 	void Init() override;
-	void Update()override {};
-	void Update(const Input& input, const Player& player);
-	void Draw() override;
+	void Update()override;
 
 	const VECTOR& GetTarget() const { return nextTarget; }
 	bool GetIsMoveAngle() const { return isMoveAngle; }
@@ -29,12 +24,10 @@ private:
 	static constexpr float DISTANCE_OFFSET = 40.0f;		// プレイヤーからの距離
 	static constexpr float SMOOTHING = 0.1f;			// カメラのスムージング
 
-	Player* player;
+	std::shared_ptr<Player> player = nullptr;
 
-	std::shared_ptr<Player>
-
-	void CalcCameraAngle(const Input& input);		// カメラのアングルを計算
-	float CalcAngleSpeed(const Input& input);		// カメラの旋回速度を計算
+	void CalcCameraAngle();		// カメラのアングルを計算
+	float CalcAngleSpeed();		// カメラの旋回速度を計算
 	void FixCameraPosition();	// カメラ座標を補正する
-	void moveSmoothing();							// カメラをスムーズに移動
+	void moveSmoothing();		// カメラをスムーズに移動
 };
