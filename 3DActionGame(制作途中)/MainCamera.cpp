@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "MainCamera.h"
 
 void MainCamera::Init()

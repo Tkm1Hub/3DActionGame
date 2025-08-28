@@ -46,7 +46,7 @@ void GameScene::Init()
     BulletCreator::GetBulletCreator().Init();
 
     // ステージのモデルハンドルを当たり判定に渡す
-    stageColl = new StageCollision(stage->GetModelHandle());
+    stageColl = new StageCollision();
 
     // デバッグクラスにオブジェクトを渡す
     debug->SetObjectManager(objMgr);
@@ -57,7 +57,7 @@ void GameScene::Update()
     // 各オブジェクトの更新処理
     cameraSelector->Update();
 
-    objMgr->UpdateAll();
+    objectMgr->UpdateAll();
 
     player->
 
