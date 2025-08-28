@@ -9,7 +9,7 @@ public:
 
 	void Create();
 	void AddObject(std::shared_ptr<IGameObject> obj);
-	std::shared_ptr<IGameObject> FindObject(const std::string& name);
+	std::shared_ptr<IGameObject> FindObject(std::string name);
 	void InitAll();
 	void LoadAll();
 	void UpdateAll();

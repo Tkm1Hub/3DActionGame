@@ -3,7 +3,7 @@
 #include "Player.h"
 #include "Input.h"
 
-FreeCamera::FreeCamera(const std::shared_ptr<Player>& playerPtr)
+FreeCamera::FreeCamera()
 {
 	name = "FreeCamera";
 	pos = VGet(0.0f, 0.0f, 0.0f);
@@ -14,10 +14,14 @@ FreeCamera::FreeCamera(const std::shared_ptr<Player>& playerPtr)
 	currentAngleSpeed = 0.0f;
 	isMoveAngle = false;
 
-	player = playerPtr;
 }
 
 FreeCamera::~FreeCamera(){}
+
+void FreeCamera::SetPlayer(const std::shared_ptr<Player>& playerPtr)
+{
+	player = playerPtr;
+}
 
 void FreeCamera::Init()
 {

@@ -12,6 +12,7 @@ public:
 	virtual void Load(){};
 
 	virtual VECTOR GetPosition() const { return pos; }
+	void SetPosition(const VECTOR& newPos) { pos = newPos; }
 	std::string GetName() const { return name; }
 protected:
 

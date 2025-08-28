@@ -1,17 +1,6 @@
 #include "stdafx.h"
 #include"Input.h"
 
-Input::Input()
-    : nowFrameInput(0)
-    , nowFrameNewInput(0)
-    , leftStickX(0)
-    , leftStickY(0)
-    , rightStickX(0)
-    , rightStickY(0)
-{}
-
-Input::~Input(){}
-
 void Input::Update()
 {
     //‚Ğ‚Æ‚Â‘O‚ÌƒtƒŒ[ƒ€‚Ì“ü—Í‚ğ•Ï”‚É‚Æ‚Á‚Ä‚¨‚­

@@ -2,11 +2,22 @@
 #include "CollisionManager.h"
 #include "Player.h"
 #include "Bullet.h"
+#include "StageCollision.h"
 
 CollisionManager::CollisionManager()
 {}
 
 CollisionManager::~CollisionManager(){}
+
+void CollisionManager::SetObjects(std::vector<std::shared_ptr<GameObject>> objectsPtr)
+{
+	objects = objectsPtr;
+}
+
+void CollisionManager::Init()
+{
+	stageColl = std::make_shared<StageCollision>();
+}
 
 void CollisionManager::Update(Player& player, const std::vector<std::shared_ptr<Bullet>>& bullets)
 {

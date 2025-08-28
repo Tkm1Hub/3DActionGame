@@ -58,6 +58,9 @@ void GameScene::Update()
     cameraSelector->Update();
 
     objMgr->UpdateAll();
+
+    player->
+
     //bullet->Update();
     BulletCreator::GetBulletCreator().Update();
 

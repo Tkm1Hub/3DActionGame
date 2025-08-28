@@ -21,7 +21,7 @@ void ObjectManager::Create()
 	stage = std::make_shared<Stage>();
 	sword = std::make_shared<Sword>();
 	camera = std::make_shared<CameraBase>();
-	freeCamera = std::make_shared<FreeCamera>(player);
+	freeCamera = std::make_shared<FreeCamera>();
 	focusCamera = std::make_shared<FocusCamera>();
 
 	AddObject(player);
@@ -48,7 +48,7 @@ void ObjectManager::AddObject(std::shared_ptr<IGameObject> obj)
 /// </summary>
 /// <param name="name"></param>
 /// <returns></returns>
-std::shared_ptr<IGameObject> ObjectManager::FindObject(const std::string& name)
+std::shared_ptr<IGameObject> ObjectManager::FindObject(std::string name)
 {
 	for (auto obj : objects) {
 		if (obj->GetName() == name) {

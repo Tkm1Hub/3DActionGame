@@ -7,6 +7,7 @@ class CameraSelector;
 class StageCollision;
 class CollisionManager;
 class Shadow;
+class Player;
 
 class GameScene : public Scene
 {
@@ -30,10 +31,13 @@ private:
 
     // オブジェクトのポインタ
     std::shared_ptr<ObjectManager> objectMgr = nullptr;
+
     Debug* debug = nullptr;
     std::shared_ptr<CameraSelector>cameraSelector = nullptr;
     StageCollision* stageColl = nullptr;
     Shadow* shadow = nullptr;
+
+    std::shared_ptr<Player> player = nullptr;
 
     //std::shared_ptr<Bullet>bullet = nullptr;
     std::shared_ptr<CollisionManager>collisionManager = nullptr;

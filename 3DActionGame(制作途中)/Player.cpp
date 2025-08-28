@@ -71,14 +71,11 @@ void Player::Update()
 	// モデルの回転
 	UpdateAngle();
 
-
 	// アニメ番号の更新
 	UpdateAnimState(prevState);
 
 	// アニメーションの更新
 	animation->Update();
-	//UpdateAnimation();
-
 
 }
 
@@ -156,7 +153,6 @@ void Player::Move(const VECTOR& MoveVector)
 		isMove = false;
 		isRunning = false;
 	}
-
 
 	if (isRunning)
 	{

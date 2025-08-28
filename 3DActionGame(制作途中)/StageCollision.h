@@ -3,7 +3,9 @@
 class StageCollision
 {
 public:
-	StageCollision(int modelHandle);
+	StageCollision();
+
+	void SetStageCollision(int stageModelHandle);
 
 	VECTOR CheckCollision(Character& object, const VECTOR& moveVec);
 

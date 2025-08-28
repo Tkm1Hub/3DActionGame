@@ -1,11 +1,13 @@
 #pragma once
 #include "CameraBase.h"
-
+class Player;
 class FreeCamera : public CameraBase
 {
 public:
-	FreeCamera(const std::shared_ptr<Player>& playerPtr);
+	FreeCamera();
 	~FreeCamera();
+
+	void SetPlayer(const std::shared_ptr<Player>& playerPtr);
 
 	void Init() override;
 	void Update()override;

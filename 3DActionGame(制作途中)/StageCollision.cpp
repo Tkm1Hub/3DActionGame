@@ -1,9 +1,11 @@
 #include "stdafx.h"
 #include "StageCollision.h"
 
-StageCollision::StageCollision(int modelHandle)
-    : modelHandle(modelHandle), wallNum(0), floorNum(0)
+StageCollision::StageCollision(){}
+
+void StageCollision::SetStageCollision(int stageModelHandle)
 {
+    modelHandle = stageModelHandle;
 }
 
 /// <summary>
