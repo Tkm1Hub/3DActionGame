@@ -20,18 +20,15 @@ GameScene::GameScene(SceneManager& manager)
 
 GameScene::~GameScene()
 {
-    delete debug;
-    delete shadow;
 }
 
 void GameScene::Init()
 {
     // オブジェクトのインスタンス化
-    debug = new Debug;
-    shadow = new Shadow;
+    shadow = std::make_shared<Shadow>();
 
     objectMgr = std::make_shared<ObjectManager>();
-    cameraSelector = std::make_shared<CameraSelector>();
+    //cameraSelector = std::make_shared<CameraSelector>();
 
     collisionManager = std::make_shared<CollisionManager>();
 
@@ -48,20 +45,15 @@ void GameScene::Init()
     // ステージのモデルハンドルを当たり判定に渡す
     stageColl = new StageCollision();
 
-    // デバッグクラスにオブジェクトを渡す
-    debug->SetObjectManager(objMgr);
 }
 
 void GameScene::Update()
 {
     // 各オブジェクトの更新処理
-    cameraSelector->Update();
+    //cameraSelector->Update();
 
     objectMgr->UpdateAll();
 
-    player->
-
-    //bullet->Update();
     BulletCreator::GetBulletCreator().Update();
 
     collisionManager->Update(*player, BulletCreator::GetBulletCreator().GetBullets());
@@ -94,6 +86,4 @@ void GameScene::Draw() const
     // 描画に使用するシャドウマップの設定を解除
     SetUseShadowMap(0, -1);
 
-    // デバッグ情報の描画
-    debug->Draw();
 }

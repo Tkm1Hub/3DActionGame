@@ -13,7 +13,7 @@ enum class AnimKind :int
 class Enemy:public Character 
 {
 public:
-	Enemy(std::shared_ptr<StageCollision>& stageCollPtr);
+	Enemy();
     ~Enemy();
 
 	void Init() override;

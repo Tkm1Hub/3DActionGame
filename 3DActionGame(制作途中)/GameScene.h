@@ -2,7 +2,6 @@
 #include "Scene.h"
 
 class ObjectManager;
-class Debug;
 class CameraSelector;
 class StageCollision;
 class CollisionManager;
@@ -32,10 +31,9 @@ private:
     // オブジェクトのポインタ
     std::shared_ptr<ObjectManager> objectMgr = nullptr;
 
-    Debug* debug = nullptr;
     std::shared_ptr<CameraSelector>cameraSelector = nullptr;
     StageCollision* stageColl = nullptr;
-    Shadow* shadow = nullptr;
+    std::shared_ptr<Shadow> shadow = nullptr;
 
     std::shared_ptr<Player> player = nullptr;
 

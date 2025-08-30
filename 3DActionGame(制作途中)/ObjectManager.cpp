@@ -8,6 +8,7 @@
 #include "CameraBase.h"
 #include "FreeCamera.h"
 #include "FocusCamera.h"
+#include "MainCamera.h"
 
 ObjectManager::ObjectManager(){}
 
@@ -19,19 +20,19 @@ void ObjectManager::Create()
 	enemy = std::make_shared<Enemy>();
 	skyDome = std::make_shared<SkyDome>();
 	stage = std::make_shared<Stage>();
-	sword = std::make_shared<Sword>();
-	camera = std::make_shared<CameraBase>();
+	//sword = std::make_shared<Sword>();
+	camera = std::make_shared<MainCamera>();
 	freeCamera = std::make_shared<FreeCamera>();
-	focusCamera = std::make_shared<FocusCamera>();
+	//focusCamera = std::make_shared<FocusCamera>();
 
 	AddObject(player);
 	AddObject(enemy);
 	AddObject(skyDome);
 	AddObject(stage);
-	AddObject(sword);
+	//AddObject(sword);
 	AddObject(camera);
 	AddObject(freeCamera);
-	AddObject(focusCamera);
+	//AddObject(focusCamera);
 }
 
 /// <summary>

@@ -5,7 +5,7 @@
 #include "StageCollision.h"
 #include "Animation.h"
 
-Player::Player(const std::shared_ptr<CameraBase>& cameraPtr,std::shared_ptr<StageCollision>& stageCollPtr)
+Player::Player()
 {
 	name = "Player";
 	pos = VGet(0.0f, 0.0f, 0.0f);
@@ -13,8 +13,6 @@ Player::Player(const std::shared_ptr<CameraBase>& cameraPtr,std::shared_ptr<Stag
 	rot = VGet(0.0f, 0.0f, 0.0f);
 	modelHandle = -1;
 
-	camera = cameraPtr;
-	stageColl = stageCollPtr;
 }
 
 Player::~Player()
@@ -192,7 +190,7 @@ void Player::Move(const VECTOR& MoveVector)
 	moveVec.y = currentJumpPower;
 
 	// 当たり判定をして、新しい座標を保存する
-	pos = stageColl->CheckCollision(*this, MoveVector);
+	//pos = stageColl->CheckCollision(*this, MoveVector);
 
 	//Y座標が-100以下になったら座標を初期化する
 	if (pos.y < -100.0f || pos.y>500)

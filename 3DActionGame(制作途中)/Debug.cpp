@@ -28,7 +28,7 @@ void Debug::Draw()
 
 		if (name == "Player")
 		{
-			std::shared_ptr<Player> player = dynamic_cast<Player>(obj);
+			std::shared_ptr<Player> player = std::dynamic_pointer_cast<Player>(obj);
 			if (player)
 			{
 				printfDx("AnimBlendRate : %f\n", player->GetBrendRate());
@@ -47,7 +47,7 @@ void Debug::Draw()
 
 		if (name == "Enemy")
 		{
-			Enemy* enemy = dynamic_cast<Enemy*>(obj);
+			std::shared_ptr<Enemy> enemy = std::dynamic_pointer_cast<Enemy>(obj);
 			if (enemy)
 			{
 				DrawCapsule(enemy);

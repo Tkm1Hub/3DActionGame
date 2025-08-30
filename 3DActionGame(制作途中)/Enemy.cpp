@@ -4,15 +4,13 @@
 #include "Animation.h"
 #include "BulletFire.h"
 
-Enemy::Enemy(std::shared_ptr<StageCollision>& stageCollPtr)
+Enemy::Enemy()
 {
 	name = "Enemy";
 	pos = VGet(0.0f, 0.0f, 0.0f);
 	scale = VGet(0.0f, 0.0f, 0.0f);
 	rot = VGet(0.0f, 0.0f, 0.0f);
 	modelHandle = -1;
-
-	stageColl = stageCollPtr;
 }
 
 Enemy::~Enemy()
@@ -138,9 +136,6 @@ void Enemy::Move(VECTOR& moveVec)
 	// 移動ベクトルのＹ成分をＹ軸方向の速度にする
 	moveVec.y = currentJumpPower;
 
-
-	// 当たり判定をして、新しい座標を保存する
-	pos = stageColl->CheckCollision(*this, moveVec);
 
 	//Y座標が-100以下になったら座標を初期化する
 	if (pos.y < -100.0f || pos.y>500)

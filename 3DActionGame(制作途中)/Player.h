@@ -22,7 +22,7 @@ class Player:public Character
 {
 public:
 
-    Player(const std::shared_ptr<CameraBase>& cameraPtr,std::shared_ptr<StageCollision>& stageCollPtr);
+    Player();
     ~Player();
 
     void Init() override;
@@ -33,6 +33,8 @@ public:
     void OnHitRoof() override;       // “Vˆä‚É“–‚½‚Á‚½
     void OnHitFloor() override;      // °‚É“–‚½‚Á‚½
     void OnFall() override;          // —‰º‚ªŠm’è‚µ‚½‚Æ‚«
+
+    void SetCamera(const std::shared_ptr<CameraBase>& cameraPtr) { camera = cameraPtr; }
 
     // ó‘Ô‚Ìæ“¾
     const enum class State GetState() const override { return currentState; }
